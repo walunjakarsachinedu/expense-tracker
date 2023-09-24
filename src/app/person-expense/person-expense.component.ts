@@ -8,4 +8,5 @@ import { Expense, PersonExpense } from 'src/model/types';
 })
 export class PersonExpenseComponent {
   @Input() personExpense?: PersonExpense;
+  isHovered = false; 
 }

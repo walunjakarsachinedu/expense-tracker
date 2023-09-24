@@ -1,4 +1,8 @@
-<div *ngIf="personExpense" class="persons-expense">
+<div 
+    *ngIf="personExpense" class="persons-expense" 
+    (mouseenter)='isHovered=true'
+    (mouseleave)='isHovered=false'
+  >
   <span class="person-name">{{personExpense!.personName}}:</span>
   <span class="expense-entry">
     <div *ngFor="let expense of personExpense!.expenses">
@@ -7,6 +11,7 @@
         [tag]="expense.tag"
       ></expense-tag>
     </div>
+    <div *ngIf="isHovered" class="add-expense" (click)="personExpense.expenses!.push({})">+ Add Expense</div>
   </span>
 </div>
 <br>

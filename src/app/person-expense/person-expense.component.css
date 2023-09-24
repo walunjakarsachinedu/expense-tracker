@@ -12,6 +12,7 @@
 .expense-entry {
   display: flex;
   flex-wrap: wrap; /* Allow items to wrap to the next line */
+  align-items: center;
   row-gap: 20px;
 }
 
@@ -29,4 +30,16 @@
   position: relative;
   bottom: -6px;
   padding-left: 2px;
+}
+
+.add-expense {
+  border: 1.5px black solid;
+  padding: 5px 6px;
+  border-radius: 8px;
+  color: #8E8E8E;
+  cursor: pointer;
+}
+
+.add-expense:hover {
+  box-shadow: 2px 2px 0px grey;
 }
