@@ -8,6 +8,7 @@ import { Expense } from 'src/model/types';
 })
 export class ExpenseTagComponent {
   @Output() onValueChange = new EventEmitter<Expense>();
-  @Input() money?: number;
-  @Input() tag?: string;
+  @Output() onExpenseDelete = new EventEmitter<string>();
+  @Input() expense?: Expense;
+  isHovered = false;
 }

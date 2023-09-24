@@ -11,40 +11,40 @@ export class ExpenseHistoryComponent {
     {
       personName: 'पप्पा',
       expenses: [
-        {money: 1000, tag: 'गाव'},
-        {money: 500, tag: 'गाव'},
-        {money: 500, tag: 'गाव'},
-        {},
-        {money: 249, tag: 'रिचार्ज'},
+        {id: '1', money: 1000, tag: 'गाव'},
+        {id: '2', money: 500, tag: 'गाव'},
+        {id: '3', money: 500, tag: 'गाव'},
+        {id: '4', },
+        {id: '5', money: 249, tag: 'रिचार्ज'},
       ]
     },
     {
       personName: 'सचिन',
       expenses: [
-        {money: 2000, tag: 'डिपोजिट'},
-        {money: 249, tag: 'रिचार्ज'},
-        {money: 4200, tag: 'लैपटॉप हफता'},
-        {money: 3000, tag: 'व्याज'},
-        {money: 250, tag: 'बस पास'},
+        {id: '1', money: 2000, tag: 'डिपोजिट'},
+        {id: '2', money: 249, tag: 'रिचार्ज'},
+        {id: '3', money: 4200, tag: 'लैपटॉप हफता'},
+        {id: '4', money: 3000, tag: 'व्याज'},
+        {id: '5', money: 250, tag: 'बस पास'},
       ]
     },
     {
       personName: 'नितीन',
       expenses: [
-        {money: 1000, tag: 'गाव'},
+        {id: '1', money: 1000, tag: 'गाव'},
       ]
     },
     {
       personName: 'बजाज',
       expenses: [
-        {money: 2012, tag: 'वाशिंग मशीन हाफता'},
-        {money: 2755, tag: 'टीव्ही हाफता'},
+        {id: '1', money: 2012, tag: 'वाशिंग मशीन हाफता'},
+        {id: '2', money: 2755, tag: 'टीव्ही हाफता'},
       ]
     },
     {
       personName: 'आई',
       expenses: [
-        {money: 250, tag: 'किरकोळ'}
+        {id: '1', money: 250, tag: 'किरकोळ'}
       ]
     },
   ];

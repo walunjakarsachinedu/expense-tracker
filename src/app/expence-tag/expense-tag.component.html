@@ -1,9 +1,21 @@
-<span class="expense-tag">
-  <span 
-    class="expense-money left-round" 
-  ><span content-editable>{{money??" "}}</span> ₹</span>
-  <span 
-    class="expense-info right-round" 
-    content-editable
-  > {{tag}}</span> &nbsp;
-</span> 
+<div class="relative">
+  <span class="expense-tag" (mouseenter)="isHovered=true" (mouseleave)="isHovered=false">
+    <span 
+      class="expense-money left-round" 
+    ><span content-editable>{{expense?.money}}</span> ₹</span>
+    <span 
+      class="expense-info right-round" 
+      content-editable
+    >{{expense?.tag}}</span> &nbsp;
+    <div *ngIf="isHovered" class="delete-expense">
+      <div class="column">
+        <img 
+          class="delete-icon" 
+          src="assets/delete.png" 
+          alt="" height="20px"
+          (click)="onExpenseDelete.emit(expense?.id)"
+        >
+      </div>
+    </div>
+  </span> 
+</div>

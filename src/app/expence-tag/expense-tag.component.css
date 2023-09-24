@@ -1,3 +1,7 @@
+.relative {
+  position: relative;
+}
+
 .expense-money {
   border: 1.5px solid;
   padding: 5px 10px;
@@ -38,4 +42,18 @@ input:focus {
 
 .visible-on-hover:hover {
   display: block;
+}
+
+.delete-expense {
+  position: absolute;
+  top: -33px;
+  right: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-icon {
+  background-color: white;
+  border-radius: 5px;
+  padding: 2px 0px;
 }

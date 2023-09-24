@@ -7,11 +7,11 @@
   <span class="expense-entry">
     <div *ngFor="let expense of personExpense!.expenses">
       <expense-tag 
-        [money]="expense.money" 
-        [tag]="expense.tag"
+        [expense]="expense"
+        (onExpenseDelete)="deleteExpense($event)"
       ></expense-tag>
     </div>
-    <div *ngIf="isHovered" class="add-expense" (click)="personExpense.expenses!.push({})">+ Add Expense</div>
+    <div *ngIf="isHovered" class="add-expense" (click)="addExpense()">+ Add Expense</div>
   </span>
 </div>
 <br>
