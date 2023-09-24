@@ -1,0 +1,32 @@
+.expense-info {
+  border-right: 1.5px solid;
+  border-top: 1.5px solid;
+  border-bottom: 1.5px solid;
+  background-color: #EBBCBC;
+  padding: 5px 10px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  margin-right: 2px;
+}
+
+.expense-entry {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  row-gap: 20px;
+}
+
+.persons-expense {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.person-name {
+  margin-right: 5px;
+  font-size: large;
+}
+
+.comma {
+  position: relative;
+  bottom: -6px;
+  padding-left: 2px;
+}

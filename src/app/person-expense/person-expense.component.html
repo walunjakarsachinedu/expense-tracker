@@ -1,0 +1,12 @@
+<div *ngIf="personExpense" class="persons-expense">
+  <span class="person-name">{{personExpense!.personName}}:</span>
+  <span class="expense-entry">
+    <div *ngFor="let expense of personExpense!.expenses">
+      <expense-tag 
+        [money]="expense.money" 
+        [tag]="expense.tag"
+      ></expense-tag>
+    </div>
+  </span>
+</div>
+<br>

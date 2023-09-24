@@ -1,0 +1,41 @@
+.expense-money {
+  border: 1.5px solid;
+  padding: 5px 10px;
+}
+
+.left-round {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.right-round {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.expense-info {
+  border-right: 1.5px solid;
+  border-top: 1.5px solid;
+  border-bottom: 1.5px solid;
+  background-color: #EBBCBC;
+  padding: 5px 10px;
+  margin-right: 2px;
+}
+
+input {
+  /* display: none; */
+  font-size: 17px;
+  font-weight: 500;
+  width: 4ch;
+}
+
+input:focus {
+  outline: none;
+}
+
+.visible-on-hover {
+  display: none;
+}
+
+.visible-on-hover:hover {
+  display: block;
+}
