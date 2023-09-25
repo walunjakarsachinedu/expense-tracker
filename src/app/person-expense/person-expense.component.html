@@ -1,11 +1,11 @@
 <div 
-    *ngIf="personExpense" class="persons-expense" 
+    *ngIf="personExpenses" class="persons-expense" 
     (mouseenter)='isHovered=true'
     (mouseleave)='isHovered=false'
   >
-  <span class="person-name">{{personExpense!.personName}}:</span>
+  <span class="person-name">{{personExpenses!.personName}}:</span>
   <span class="expense-entry">
-    <div *ngFor="let expense of personExpense!.expenses">
+    <div *ngFor="let expense of personExpenses!.expenses">
       <expense-tag 
         [expense]="expense"
         (onExpenseDelete)="deleteExpense($event)"

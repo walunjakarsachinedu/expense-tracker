@@ -8,16 +8,16 @@ import { v4 as uuid } from 'uuid';
   styleUrls: ['./person-expense.component.css']
 })
 export class PersonExpenseComponent {
-  @Input() personExpense?: PersonExpense;
+  @Input() personExpenses?: PersonExpense;
   isHovered = false; 
 
   deleteExpense(id: string) {
-    const index = this.personExpense?.expenses?.findIndex(v => v.id == id);
-    if(index != undefined && index != -1) this.personExpense?.expenses?.splice(index, 1);
+    const index = this.personExpenses?.expenses?.findIndex(v => v.id == id);
+    if(index != undefined && index != -1) this.personExpenses?.expenses?.splice(index, 1);
   }
 
   addExpense() {
     const id = uuid();
-    this.personExpense?.expenses?.push({id});
+    this.personExpenses?.expenses?.push({id});
   }
 }
