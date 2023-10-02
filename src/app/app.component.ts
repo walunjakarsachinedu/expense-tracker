@@ -10,43 +10,43 @@ export class AppComponent {
   title = 'expense-tracker';
   people_expenses_lists: PersonExpense[] = [
     {
-      personName: 'पप्पा',
+      personName: 'राजेश',
       expenses: [
-        {id: '1', money: 1000, tag: 'गाव'},
-        {id: '2', money: 500, tag: 'गाव'},
-        {id: '3', money: 500, tag: 'गाव'},
-        {id: '4', },
-        {id: '5', money: 249, tag: 'रिचार्ज'},
+        {id: '1', money: 1500, tag: 'बिल्स'},
+        {id: '2', money: 800, tag: 'गाडी रेंट'},
+        {id: '3', money: 450, tag: 'रेस्टोरेंट'},
+        {id: '4', money: 300, tag: 'कॉफी'},
       ]
     },
     {
-      personName: 'सचिन',
+      personName: 'पूनम',
       expenses: [
-        {id: '1', money: 2000, tag: 'डिपोजिट'},
-        {id: '2', money: 249, tag: 'रिचार्ज'},
-        {id: '3', money: 4200, tag: 'लैपटॉप हफता'},
-        {id: '4', money: 3000, tag: 'व्याज'},
-        {id: '5', money: 250, tag: 'बस पास'},
+        {id: '1', money: 1200, tag: 'शॉपिंग'},
+        {id: '2', money: 600, tag: 'फैशन'},
       ]
     },
     {
-      personName: 'नितीन',
+      personName: 'अनुपम',
       expenses: [
-        {id: '1', money: 1000, tag: 'गाव'},
+        {id: '1', money: 3000, tag: 'होटल बुकिंग'},
+        {id: '2', money: 1500, tag: 'टैक्सी'},
+        {id: '3', money: 750, tag: 'दरबार खर्च'},
       ]
     },
     {
-      personName: 'बजाज',
+      personName: 'सोनिया',
       expenses: [
-        {id: '1', money: 2012, tag: 'वाशिंग मशीन हाफता'},
-        {id: '2', money: 2755, tag: 'टीव्ही हाफता'},
+        {id: '1', money: 800, tag: 'फिटनेस'},
+        {id: '2', money: 250, tag: 'फूड डिलिवरी'},
       ]
     },
     {
-      personName: 'आई',
+      personName: 'मोहन',
       expenses: [
-        {id: '1', money: 250, tag: 'किरकोळ'}
+        {id: '1', money: 2000, tag: 'घरच्या सामानाची खरेदी'},
+        {id: '2', money: 500, tag: 'गिफ्ट्स'},
       ]
     },
   ];
+  
 }
