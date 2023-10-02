@@ -33,8 +33,9 @@
 }
 
 .add-expense {
+  box-sizing: border-box;
   border: 1.5px black solid;
-  padding: 5px 6px;
+  padding: 0px 6px;
   border-radius: 8px;
   color: #8E8E8E;
   cursor: pointer;
