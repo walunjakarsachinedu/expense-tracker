@@ -5,13 +5,14 @@
         <img src="assets/expense-icon.png" alt="hello" height="25px">
         <div style="padding-left: 10px;">Expense History</div>
       </div>    
-      <div class="border"> Total : ₹ 1200 /- </div>
+      <div class="border"> Total : {{total | currency: 'IN':''}} /- </div>
     </div>
   <hr>
     <div class="card-body">
       <person-expenses 
         *ngFor="let people_expenses of people_expenses_lists" 
         [personExpenses]="people_expenses"
+        (onTotalExpenseChange)="refreshExpense()"
       ></person-expenses>
     </div>
   </div>
