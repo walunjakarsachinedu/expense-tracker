@@ -4,7 +4,7 @@ import { Expense } from 'src/model/types';
 @Component({
   selector: 'expense-tag',
   templateUrl: './expense-tag.component.html',
-  styleUrls: ['./expense-tag.component.css']
+  styleUrls: ['./expense-tag.component.scss']
 })
 export class ExpenseTagComponent {
   @Output() onValueChange = new EventEmitter<Expense>();

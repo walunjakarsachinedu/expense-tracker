@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid';
 @Component({
   selector: 'person-expenses',
   templateUrl: './person-expense.component.html',
-  styleUrls: ['./person-expense.component.css']
+  styleUrls: ['./person-expense.component.scss']
 })
 export class PersonExpenseComponent {
   @Input() personExpenses?: PersonExpense;

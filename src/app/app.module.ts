@@ -13,7 +13,7 @@ import { ContentEditableDirective } from './content-editable.directive';
     ExpenseTagComponent,
     PersonExpenseComponent,
     ExpenseHistoryComponent,
-    ContentEditableDirective
+    ContentEditableDirective,
   ],
   imports: [
     BrowserModule
