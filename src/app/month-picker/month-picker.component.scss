@@ -1,0 +1,17 @@
+.month-picker {
+  max-width: 400px; 
+  margin: 20px 30px;
+  .month-picker-body {
+    .month-picker-cell {
+      margin-bottom:10px;
+    } 
+  }
+}
+
+.btn-block {
+  background-color: rgba(0,0,0,0.03);
+}
+.btn-primary {
+  background-color: #007bff;
+}
+
