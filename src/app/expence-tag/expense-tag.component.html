@@ -7,15 +7,8 @@
       class="expense-info right-round" 
       content-editable
     >{{expense?.tag}}</span> &nbsp;
-    <div *ngIf="isHovered" class="delete-expense">
-      <div class="column">
-        <img 
-          class="delete-icon" 
-          src="assets/delete.png" 
-          alt="" height="20px"
-          (click)="onExpenseDelete.emit(expense?.id)"
-        >
-      </div>
+    <div *ngIf="isHovered" class="delete-expense" (click)="onExpenseDelete.emit(expense?.id)">
+      <i class="fa fa-times"></i>
     </div>
   </span> 
 </div>
