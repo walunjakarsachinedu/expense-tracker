@@ -3,8 +3,11 @@
 }
 
 .expense-money {
-  border: 1.5px solid;
-  padding: 5px 10px;
+  border: 1px solid;
+  padding: 7px 10px;
+  
+  box-shadow: 0px 5px 10px #dedede;
+  border-color: rgba(0,0,0,0.125);
 }
 
 .left-round {
@@ -20,9 +23,11 @@
   border-right: 1.5px solid;
   border-top: 1.5px solid;
   border-bottom: 1.5px solid;
-  background-color: #EBBCBC;
-  padding: 5px 10px;
+  // background-color: #EBBCBC;
+  padding: 7px 10px;
   margin-right: 2px;
+  box-shadow: 0px 5px 10px #dedede;
+  border-color: rgba(0,0,0,0.125);
 }
 
 input {
