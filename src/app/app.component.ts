@@ -9,5 +9,6 @@ import people_expenses_lists from './data/data';
 })
 export class AppComponent {
   title = 'expense-tracker';
+  menuOpen = false;
   expenseByMonth: ExpensesByMonth = people_expenses_lists;
 }
