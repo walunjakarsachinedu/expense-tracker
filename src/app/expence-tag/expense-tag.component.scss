@@ -70,3 +70,13 @@ input:focus {
 //   border-radius: 5px;
 //   padding: 2px 0px;
 // }
+
+
+// dark mode style
+
+.expense-money, .expense-info, .delete-expense {
+  // box-shadow: var(--dark-shadow-color) 0px 3px;
+  box-shadow: none;
+  background-color: var(--dark-background-color1);
+  border-color: var(--dark-border-color1);
+}

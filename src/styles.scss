@@ -22,3 +22,29 @@ body {
 .light-border {
   border-color: rgba(0,0,0,0.125);
 }
+
+
+// dark mode styles
+
+:root {
+  --dark-background-color: rgb(13, 17, 23);
+  --dark-text-color: rgb(230, 237, 243);
+  --dark-border-color: rgb(33, 38, 45);
+  --dark-border-color1: rgb(48, 54, 61);
+  --dark-shadow-color: rgb(1, 4, 9);
+  --dark-background-color1: rgb(22, 27, 34);
+  --dark-icon-color:  rgb(125, 133, 144);
+}
+
+body {
+  background-color: var(--dark-background-color);
+  color: var(--dark-text-color);
+}
+
+hr {
+  border-color: var(--dark-border-color1);
+}
+
+.fa {
+  color: var(--dark-icon-color);
+}

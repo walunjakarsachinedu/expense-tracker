@@ -30,3 +30,9 @@
 .menu.active .submenu {
   display: block;
 }
+
+
+// dark mode styles
+.hr {
+  border-color: var(--dark-border-color1);
+}

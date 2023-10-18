@@ -59,7 +59,7 @@
   font-weight: 300;
   font-size: x-large;
   display: flex;
-  
+  align-items: center;
 }
 
 .card-body {
@@ -74,3 +74,24 @@
 .myinput {
   width: 2ch;
 }
+
+
+
+
+// dark mode styles
+.card {
+  background-color: var(--dark-background-color);
+  box-shadow: var(--dark-shadow-color) 0px 3px;
+  border-color: var(--dark-border-color1);
+  font-size: 15px;
+}
+
+.card-title {
+  font-size: 20px; 
+  margin-bottom: 0px;
+}
+
+.border {
+  border-color: var(--dark-border-color1) !important;
+}
+
