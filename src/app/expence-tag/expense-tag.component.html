@@ -1,13 +1,14 @@
 <div class="relative">
   <span class="expense-tag" (mouseenter)="isHovered=true" (mouseleave)="isHovered=false">
-    <span 
-      class="expense-money left-round" 
-    ><span content-editable type="number">{{expense?.money}}</span> ₹</span>
-    <span 
-      class="expense-info right-round" 
-      content-editable
-    >{{expense?.tag}}</span> &nbsp;
-    <div *ngIf="isHovered" class="delete-expense" (click)="onExpenseDelete.emit(expense?.id)">
+    <span class="expense-money left-round">
+      <span content-editable type="number" 
+        [(input)]="expense.money" (inputChange)="onValueChange.emit(expense)"
+      ></span> ₹
+    </span>
+    <span content-editable class="expense-info right-round"
+      [(input)]="expense.tag" (inputChange)="onValueChange.emit(expense)"
+    ></span> &nbsp;
+    <div *ngIf="isHovered" class="delete-expense" (click)="onExpenseDelete.emit(expense.id)">
       <i class="fa fa-times"></i>
     </div>
   </span> 
