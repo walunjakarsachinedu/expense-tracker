@@ -9,6 +9,7 @@
       <expense-tag 
         [expense]="expense"
         (onExpenseDelete)="deleteExpense($event)"
+        (onValueChange)="refreshExpense()"
       ></expense-tag>
     </div>
     <div *ngIf="isHovered" class="add-expense" (click)="addExpense()">+</div>

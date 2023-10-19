@@ -25,6 +25,7 @@ export class ContentEditableDirective {
   private setInput(inputElement: any) {
     const cursorPosition = this.getSelectionStart(inputElement, 0);
     this.input = (this.type=="number") ? parseInt(inputElement.textContent) : inputElement.textContent;
+    if(inputElement.textContent == '' && this.type=="number") this.input = undefined;
     this.inputChange.emit(this.input);
     if(inputElement.textContent != "") this.setSelectionRange(inputElement, cursorPosition, cursorPosition);
   }
