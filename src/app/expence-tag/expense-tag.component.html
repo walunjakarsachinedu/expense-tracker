@@ -1,7 +1,7 @@
 <div class="relative">
   <span class="expense-tag" (mouseenter)="isHovered=true" (mouseleave)="isHovered=false">
     <span class="expense-money left-round">
-      <span content-editable type="number" 
+      <span content-editable type="number" [ngClass]="{'space': !expense.money}"
         [(input)]="expense.money" (inputChange)="onValueChange.emit(expense)"
       ></span> ₹
     </span>
