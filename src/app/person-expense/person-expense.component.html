@@ -3,7 +3,7 @@
     (mouseenter)='isHovered=true'
     (mouseleave)='isHovered=false'
   >
-  <span class="person-name">{{personExpenses!.personName}}:</span>
+  <span class="person-name" [ngClass]="{'pl-15': (personExpenses.personName ?? '') == ''}" content-editable placeholder="person name" [(input)]="personExpenses.personName"></span>: &nbsp;
   <span class="expense-entry">
     <div *ngFor="let expense of personExpenses!.expenses">
       <expense-tag 

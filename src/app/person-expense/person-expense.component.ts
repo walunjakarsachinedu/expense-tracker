@@ -8,7 +8,7 @@ import { v4 as uuid } from 'uuid';
   styleUrls: ['./person-expense.component.scss']
 })
 export class PersonExpenseComponent implements OnInit {
-  @Input() personExpenses?: PersonExpense;
+  @Input() personExpenses: PersonExpense = {personName: "", expenses: []};
   @Output() onTotalExpenseChange: EventEmitter<number> = new EventEmitter<number>();
   isHovered = false; 
 

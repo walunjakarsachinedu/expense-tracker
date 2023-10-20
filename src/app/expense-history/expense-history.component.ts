@@ -15,6 +15,10 @@ export class ExpenseHistoryComponent {
     this.people_expenses_lists.forEach(person => person.expenses?.forEach(expense => this.total! += expense.money ?? 0));
   }
 
+  addExpense() {
+    this.people_expenses_lists.push({personName:"", expenses: []})
+  }
+
   ngOnInit():void {
     this.refreshExpense();
   }

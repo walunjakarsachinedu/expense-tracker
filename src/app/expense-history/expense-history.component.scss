@@ -75,7 +75,19 @@
   width: 2ch;
 }
 
-
+.add-person {
+  box-sizing: border-box;
+  border: 1.5px var(--dark-border-color1) solid;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: #8E8E8E;
+  background-color: var(--dark-background-color);
+  box-shadow: var(--dark-shadow-color) 0px 3px;
+}
+.add-person:hover {
+  box-shadow: 2px 2px 0px grey;
+}
 
 
 // dark mode styles

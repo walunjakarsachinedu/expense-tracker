@@ -18,8 +18,7 @@ export class ContentEditableDirective {
   }
 
   ngOnInit() {
-    if(!this.input) throw Error("value to input property not provided");
-    this.el.nativeElement.textContent = this.input!;
+    this.el.nativeElement.textContent = this.input ?? '';
   }
 
   private setInput(inputElement: any) {
