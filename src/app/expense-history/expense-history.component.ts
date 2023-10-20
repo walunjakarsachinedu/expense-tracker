@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { PersonExpense } from 'src/model/types';
+import { v4 } from 'uuid';
 
 @Component({
   selector: 'expense-history',
@@ -16,7 +17,7 @@ export class ExpenseHistoryComponent {
   }
 
   addExpense() {
-    this.people_expenses_lists.push({personName:"", expenses: []})
+    this.people_expenses_lists.push({personName:"", expenses: [{id: v4()}]})
   }
 
   ngOnInit():void {

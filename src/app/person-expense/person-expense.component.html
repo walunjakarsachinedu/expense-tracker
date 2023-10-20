@@ -1,8 +1,9 @@
-<div 
-    *ngIf="personExpenses" class="persons-expense" 
+<div style="position: relative;"
     (mouseenter)='isHovered=true'
     (mouseleave)='isHovered=false'
-  >
+>
+<div *ngIf="personExpenses" class="persons-expense">
+  <div class="fa fa-bars reorder-icon" [ngClass]="{'hidden': !isHovered}"></div>
   <span class="person-name" [ngClass]="{'pl-15': (personExpenses.personName ?? '') == ''}" content-editable placeholder="person name" [(input)]="personExpenses.personName"></span>: &nbsp;
   <span class="expense-entry">
     <div *ngFor="let expense of personExpenses!.expenses">
