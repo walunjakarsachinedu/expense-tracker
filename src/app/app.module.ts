@@ -8,6 +8,7 @@ import { ExpenseHistoryComponent } from './expense-history/expense-history.compo
 import { ContentEditableDirective } from './content-editable.directive';
 import { MonthPickerComponent } from './month-picker/month-picker.component';
 import { Month } from 'src/model/types';
+import { ContextMenuComponent } from './context-menu/context-menu.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { Month } from 'src/model/types';
     PersonExpenseComponent,
     ExpenseHistoryComponent,
     ContentEditableDirective,
-    MonthPickerComponent
+    MonthPickerComponent,
+    ContextMenuComponent
   ],
   imports: [
     BrowserModule,

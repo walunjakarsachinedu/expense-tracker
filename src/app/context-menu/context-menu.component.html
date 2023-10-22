@@ -1,0 +1,8 @@
+<div id="context-menu">
+  <div class="card">
+    <div class="menu-item d-flex align-items-center" *ngFor="let item of items" (click)="item.onTap?.()">
+      <i class="icon" [class]="item.icon"></i>
+      <div class="name">{{item.name??''}}</div>
+    </div>
+  </div>
+</div>

@@ -28,5 +28,16 @@ type ExpensesByMonth = {
   [month in Month]?: PersonExpense[];
 };
 
+interface ContextMenuItem {
+  icon?: string;
+  name?: string;
+  onTap?: () => void
+}
 
-export {Expense, PersonExpense, ExpensesByMonth, Month};
+interface Position {
+  x?: string;
+  y?: string;
+}
+
+
+export {Expense, PersonExpense, ExpensesByMonth, Month, ContextMenuItem, Position};
