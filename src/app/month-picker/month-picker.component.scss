@@ -14,3 +14,16 @@
   background-color: #007bff;
 }
 
+.card {
+  border: 1px solid var(--dark-border-color1);
+}
+
+.card-header, .card-body, .btn {
+  background-color: var(--dark-background-color);
+  color: white;
+}
+
+.btn-block {
+  background-color: var(--dark-background-color1);
+  color: white;
+}
