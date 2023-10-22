@@ -13,6 +13,7 @@
         *ngFor="let people_expenses of people_expenses_lists" 
         [personExpenses]="people_expenses"
         (onTotalExpenseChange)="refreshExpense()"
+        (onPersonDelete)="deletePerson($event)"
       ></person-expenses>
       <button class="add-person" (click)="addExpense()">Add Person + </button>
     </div>

@@ -3,7 +3,9 @@
     (mouseleave)='isHovered=false'
 >
 <div *ngIf="personExpenses" class="persons-expense">
-  <div class="fa fa-bars reorder-icon" [ngClass]="{'hidden': !isHovered}"></div>
+  <div class="fa fa-bars reorder-icon" [ngClass]="{'hidden': !isHovered}"
+    contextMenuDir [items]="contextMenuItems"
+  ></div>
   <span class="person-name" [ngClass]="{'pl-15': (personExpenses.personName ?? '') == ''}" content-editable placeholder="person name" [(input)]="personExpenses.personName"></span>: &nbsp;
   <span class="expense-entry">
     <div *ngFor="let expense of personExpenses!.expenses">

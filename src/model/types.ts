@@ -5,6 +5,7 @@ interface Expense {
 }
 
 interface PersonExpense {
+  id?: String;
   personName?: String; 
   expenses?: Expense[];
 }

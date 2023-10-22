@@ -17,10 +17,19 @@ export class ExpenseHistoryComponent {
   }
 
   addExpense() {
-    this.people_expenses_lists.push({personName:"", expenses: [{id: v4()}]})
+    this.people_expenses_lists.push({id: v4(), personName:"", expenses: [{id: v4()}]})
   }
 
   ngOnInit():void {
     this.refreshExpense();
+  }
+
+  deletePerson(id: string) {
+    for(let i=0; i<this.people_expenses_lists.length; i++) {
+      if(this.people_expenses_lists[i].id == id) {
+        this.people_expenses_lists.splice(i, 1);
+        break;
+      }
+    }
   }
 }
