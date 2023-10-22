@@ -7,7 +7,6 @@ import { ContextMenuItem, Position } from 'src/model/types';
   styleUrls: ['./context-menu.component.scss']
 })
 export class ContextMenuComponent {
-  @Input() position: Position = {x: '0px', y: '0px'};
   @Input() items: ContextMenuItem[] = [
     { 
       icon: "fa fa-clone", 

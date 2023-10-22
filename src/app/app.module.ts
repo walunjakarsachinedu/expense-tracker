@@ -9,6 +9,7 @@ import { ContentEditableDirective } from './content-editable.directive';
 import { MonthPickerComponent } from './month-picker/month-picker.component';
 import { Month } from 'src/model/types';
 import { ContextMenuComponent } from './context-menu/context-menu.component';
+import { ContextMenuDirective } from './context-menu.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ContextMenuComponent } from './context-menu/context-menu.component';
     ExpenseHistoryComponent,
     ContentEditableDirective,
     MonthPickerComponent,
-    ContextMenuComponent
+    ContextMenuComponent,
+    ContextMenuDirective,
   ],
   imports: [
     BrowserModule,
