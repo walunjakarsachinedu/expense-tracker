@@ -10,6 +10,13 @@ import { MonthPickerComponent } from './month-picker/month-picker.component';
 import { Month } from 'src/model/types';
 import { ContextMenuComponent } from './context-menu/context-menu.component';
 import { ContextMenuDirective } from './context-menu.directive';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginPageComponent } from './login/login.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { AppRoutingModule } from './app-routing.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,9 +28,16 @@ import { ContextMenuDirective } from './context-menu.directive';
     MonthPickerComponent,
     ContextMenuComponent,
     ContextMenuDirective,
+    LoginPageComponent,
+    HomePageComponent,
+    PageNotFoundComponent,
   ],
   imports: [
+    FormsModule,
     BrowserModule,
+    GraphQLModule,
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

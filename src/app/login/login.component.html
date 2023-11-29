@@ -1,0 +1,9 @@
+<h3 class="text-light d-flex justify-content-center mt-5">Login</h3>
+<div class="d-flex flex-column align-items-center m-5">
+    <input [(ngModel)]="email"  type="email" name="email" id="email" placeholder="Email" required>
+    <input [(ngModel)]="password" type="password" name="password" id="password" placeholder="Password" required>
+  <div class="mt-4 size button">
+    Login
+  </div>
+  <div class="mt-4">Don't have account yet? <a routerLink="/signup">signup!</a></div>
+</div>

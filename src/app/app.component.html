@@ -1,12 +1,1 @@
-<div class="title">
-  <div>Expense Tracker</div>
-  <div class="menu">
-    <div class="fa fa-calendar-o cursor-pointer" (click)="menuOpen = !menuOpen"></div>
-    <div class="submenu" *ngIf="menuOpen"> <monthpicker></monthpicker> </div>
-  </div>
-</div>
-<div class="hr"></div>
-<br><br>
-<expense-history [people_expenses_lists]="expenseByMonth.October!"></expense-history>
-
-<br><br><br><br><br>
+<router-outlet></router-outlet>
