@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { ExpensesByMonth } from 'src/model/types';
 import people_expenses_lists from '../data/data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'home-page',
@@ -14,12 +15,16 @@ export class HomePageComponent implements OnInit {
   expenseByMonth: ExpensesByMonth = people_expenses_lists;
 
 
-  constructor(public apollo: Apollo) { }
+  constructor(public apollo: Apollo, private router: Router) { }
 
   ngOnInit(): void {
     // this.login();
   }
 
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
 
   login() {
     const LOGIN = gql`

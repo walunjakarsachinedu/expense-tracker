@@ -17,8 +17,8 @@ export class AuthService {
       const subscription = this.apollo.mutate({
         mutation: LOGIN,
         variables: {
-          email: "walunjakarsachin@gmail.com",
-          password: "Sachin@123"
+          email: email,
+          password: password
         }
       }).subscribe({
         next: ({data, loading}) => {

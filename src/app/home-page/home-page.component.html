@@ -1,8 +1,11 @@
 <div class="title">
   <div>Expense Tracker</div>
-  <div class="menu">
-    <div class="fa fa-calendar-o cursor-pointer" (click)="menuOpen = !menuOpen"></div>
-    <div class="submenu" *ngIf="menuOpen"> <monthpicker></monthpicker> </div>
+  <div class="d-flex">
+    <div class="menu">
+      <div class="fa fa-calendar-o cursor-pointer" (click)="menuOpen = !menuOpen"></div>
+      <div class="submenu" *ngIf="menuOpen"> <monthpicker></monthpicker> </div>
+    </div>
+    <div class="mt-2 ml-5 fa fa-sign-out-alt cursor-pointer" (click)="logout()"></div>
   </div>
 </div>
 <div class="hr"></div>

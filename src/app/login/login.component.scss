@@ -14,6 +14,15 @@ input:-webkit-autofill:active {
   border-radius: 5px;
 }
 
+/* Input Autocomplete Styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 30px rgba(70, 90, 126, 0.1) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 input:focus {
   outline: none;
 }
@@ -33,11 +42,10 @@ input:focus {
 
 
 
-/* Input Autocomplete Styles */
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus {
-  -webkit-text-fill-color: white;
-  -webkit-box-shadow: 0 0 0px 30px rgba(70, 90, 126, 0.1) inset;
-  transition: background-color 5000s ease-in-out 0s;
+.error-text {
+  font-size: 13px;
+  align-self: flex-start;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
+

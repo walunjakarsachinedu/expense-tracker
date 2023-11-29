@@ -48,3 +48,10 @@ hr {
 .fa {
   color: var(--dark-icon-color);
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+
+@import '~@fortawesome/fontawesome-free/css/all.css';
