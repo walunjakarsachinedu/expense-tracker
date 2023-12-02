@@ -11,6 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class LoginPageComponent {
   form: FormGroup;
   constructor(private authService: AuthService, private router: Router) { 
+    if(localStorage.getItem('token')) router.navigate(['/home']);
     this.form = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]) ,
       password: new FormControl('', [Validators.required])
