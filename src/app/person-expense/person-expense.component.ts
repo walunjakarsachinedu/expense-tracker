@@ -17,8 +17,8 @@ export class PersonExpenseComponent implements OnInit {
   constructor(private clipboardService: ClipboardService) { }
 
   contextMenuItems: ContextMenuItem[] = [
-    { name: "Delete", icon: "fa fa-trash", onTap: this.deletePerson.bind(this) },
-    { name: "Copy", icon: "fa fa-clone", onTap: this.copyPersonExpense.bind(this) },
+    { name: "Delete", icon: "fas fa-trash", onTap: this.deletePerson.bind(this) },
+    { name: "Copy", icon: "fas fa-clone", onTap: this.copyPersonExpense.bind(this) },
   ]; 
 
   ngOnInit():void {

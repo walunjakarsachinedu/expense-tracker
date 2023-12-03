@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
 
 body {
   font-family: 'inter';
@@ -8,12 +11,6 @@ body {
 [contenteditable] {
   outline: 0px solid transparent;
 }
-
-
-@import 'node_modules/bootstrap/dist/css/bootstrap.min.css';
-
-@import url(https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
-
 
 .dark-bg {
   background-color: rgba(0,0,0,0.03);
@@ -45,7 +42,7 @@ hr {
   border-color: var(--dark-border-color1);
 }
 
-.fa {
+.fas {
   color: var(--dark-icon-color);
 }
 
@@ -54,4 +51,3 @@ hr {
 }
 
 
-@import '~@fortawesome/fontawesome-free/css/all.css';

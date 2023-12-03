@@ -9,12 +9,12 @@ import { ContextMenuItem, Position } from 'src/model/types';
 export class ContextMenuComponent {
   @Input() items: ContextMenuItem[] = [
     { 
-      icon: "fa fa-clone", 
+      icon: "fas fa-clone", 
       name: "Copy", 
       onTap: () => { console.log("=> Copy item pressed") }, 
     },
     { 
-      icon: "fa fa-trash", 
+      icon: "fas fa-trash", 
       name: "Delete", 
       onTap: () => { console.log("=> Delete item pressed") }, 
     }
