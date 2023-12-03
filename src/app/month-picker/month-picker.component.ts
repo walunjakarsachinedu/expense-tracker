@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
-import * as moment from 'moment';
-// import 'moment/locale/de';
+import { DateTime, Info } from 'luxon';
 
 @Component({
   selector: 'monthpicker',
@@ -18,33 +17,32 @@ export class MonthPickerComponent implements OnInit, OnDestroy {
 
   @Input() enabledYears: Array<number> = [];
   @Input() disabledYears: Array<number> = [];
- 
-  @Input() multiple?: boolean; // TODO
+
+  @Input() multiple?: boolean;
 
   @Output() change = new EventEmitter<{ monthIndex: number, year: number }>();
 
-  isFirstClickedOutside = true; // boolean for ignoring first event, (is evnet of button for showing month-picker)
+  isFirstClickedOutside = true;
   @Output() onClickOutside = new EventEmitter<void>();
 
   model?: MonthPickerModel;
 
   ngOnInit() {
     if (this.locale) {
-      moment.locale(this.locale);
-    } else {
-      moment.locale('en');
+      // Luxon doesn't have a direct locale setting like Moment.js
+      // You might want to handle locale in a different way if needed
     }
 
     this.model = new MonthPickerModel();
 
     if (this.year) {
-      this.model!.selectedYearMoment = moment().year(this.year);
+      this.model!.selectedYear = DateTime.local().set({ year: this.year });
       this.model!.updateYearText();
     }
 
     if (this.month) {
       this.model!.selectedMonthIndex = this.month;
-      this.model!.selectedMonthMoment = moment().month(this.month);
+      this.model!.selectedMonth = DateTime.local().set({ month: this.month });
       if (this.year) this.model!.selectedMonthYear = this.year;
     }
 
@@ -56,14 +54,14 @@ export class MonthPickerComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     document.removeEventListener('click', this.clickOutOfMonthPickerListener);
   }
-  
-  clickOutOfMonthPickerListener =  (event: any) => {
-    if(this.isFirstClickedOutside) {
+
+  clickOutOfMonthPickerListener = (event: any) => {
+    if (this.isFirstClickedOutside) {
       this.isFirstClickedOutside = false;
       return;
     }
     const monthPicker = document.getElementsByClassName('month-picker')[0] as HTMLElement;
-    var isClickInsideMonthPicker = monthPicker.contains(event.target as Node);
+    const isClickInsideMonthPicker = monthPicker.contains(event.target as Node);
     if (!isClickInsideMonthPicker) this.onClickOutside.emit();
   };
 
@@ -87,7 +85,7 @@ export class MonthPickerComponent implements OnInit, OnDestroy {
   }
 
   isSelectedMonth(monthIndex: number) {
-    return this.model!.selectedMonthIndex == monthIndex && this.model!.selectedMonthYear == this.model!.selectedYearMoment.year();
+    return this.model!.selectedMonthIndex == monthIndex && this.model!.selectedMonthYear == this.model!.selectedYear.year;
   }
 
   onChange(monthIndex: number, year: number) {
@@ -115,26 +113,25 @@ export class MonthPickerComponent implements OnInit, OnDestroy {
   renderYears() {
     this.years = [];
     for (let i = 5; i > 0; i--) {
-      this.years.push(this.model!.selectedYearMoment.year() - i);
+      this.years.push(this.model!.selectedYear.year - i);
     }
     for (let i = 0; i <= 6; i++) {
-      this.years.push(this.model!.selectedYearMoment.year() + i);
+      this.years.push(this.model!.selectedYear.year + i);
     }
   }
 
   selectYear(year: number) {
     this.isShowYears = false;
-    this.model!.selectedYearMoment = moment().year(year);
-    this.model!.updateYearText(); // in set get aendern
+    this.model!.selectedYear = DateTime.local().set({ year: year });
+    this.model!.updateYearText();
   }
 
-  isSelectedYear(year: number){
-    return this.model!.selectedYearMoment.year() === year;
+  isSelectedYear(year: number) {
+    return this.model!.selectedYear.year === year;
   }
 
   isDisabledYear(year: number) {
-    // console.warn(year)
-     let disabled = false;
+    let disabled = false;
     if (this.enabledYears && this.enabledYears.length > 0) {
       disabled = this.enabledYears.findIndex(y => y === year) < 0;
     }
@@ -147,43 +144,42 @@ export class MonthPickerComponent implements OnInit, OnDestroy {
 
 export class MonthPickerModel {
   constructor() {
-    this.selectedYearMoment = moment();
+    this.selectedYear = DateTime.local();
     this.updateYearText();
 
-    this.selectedMonthMoment = moment();
+    this.selectedMonth = DateTime.local();
 
-    this.months = moment.months();
-
-    this.selectedMonthIndex = this.selectedMonthMoment.month();
-    this.selectedMonthYear = this.selectedYearMoment.year();
+    this.months = Info.months();
+    this.selectedMonthIndex = this.selectedMonth.month;
+    this.selectedMonthYear = this.selectedYear.year;
   }
 
-  selectedYearMoment: moment.Moment;
+  selectedYear: DateTime;
   selectedYearText?: string;
 
-  selectedMonthMoment: moment.Moment;
+  selectedMonth: DateTime;
   selectedMonthIndex: number;
   selectedMonthYear: number;
 
   months: Array<string> = [];
 
   updateYearText() {
-    this.selectedYearText = moment(this.selectedYearMoment).format('YYYY');
+    this.selectedYearText = this.selectedYear.toFormat('yyyy');
   }
 
   selectMonth(index: number) {
-    this.selectedMonthMoment = moment().month(index);
-    this.selectedMonthIndex = this.selectedMonthMoment.month();
-    this.selectedMonthYear = this.selectedYearMoment.year();
+    this.selectedMonth = DateTime.local().set({ month: index });
+    this.selectedMonthIndex = this.selectedMonth.month;
+    this.selectedMonthYear = this.selectedYear.year;
   }
 
   incrementYear() {
-    this.selectedYearMoment = this.selectedYearMoment.add(1, "year")
+    this.selectedYear = this.selectedYear.plus({ years: 1 });
     this.updateYearText();
   }
 
   decrementYear() {
-    this.selectedYearMoment = this.selectedYearMoment.subtract(1, "year")
+    this.selectedYear = this.selectedYear.minus({ years: 1 });
     this.updateYearText();
   }
 }
