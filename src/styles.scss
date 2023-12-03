@@ -26,8 +26,8 @@ body {
 :root {
   --dark-background-color: rgb(13, 17, 23);
   --dark-text-color: rgb(230, 237, 243);
-  --dark-border-color: rgb(33, 38, 45);
-  --dark-border-color1: rgb(48, 54, 61);
+  --dark-border-color: rgb(48, 54, 61);
+  --dark-border-color1: rgba(0,0,0,0.125);
   --dark-shadow-color: rgb(1, 4, 9);
   --dark-background-color1: rgb(22, 27, 34);
   --dark-icon-color:  rgb(125, 133, 144);
@@ -39,7 +39,7 @@ body {
 }
 
 hr {
-  border-color: var(--dark-border-color1);
+  border-color: var(--dark-border-color);
 }
 
 .fas {

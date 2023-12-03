@@ -3,7 +3,7 @@
 }
 
 .expense-money {
-  border: 1px solid;
+  border: 1.5px solid;
   padding: 7px 10px;
   
   box-shadow: 0px 5px 10px #dedede;
@@ -78,7 +78,7 @@ input:focus {
   // box-shadow: var(--dark-shadow-color) 0px 3px;
   box-shadow: none;
   background-color: var(--dark-background-color1);
-  border-color: var(--dark-border-color1);
+  border-color: var(--dark-border-color);
 }
 
 .space {

@@ -2,20 +2,21 @@
   <div class="card">
     <div class="card-heading"> 
       <div class="card-title">
-        <img src="assets/expense-icon.png" alt="hello" height="25px">
         <div style="padding-left: 10px;">Expense History</div>
       </div>    
-      <div class="border"> Total : {{total | currency: 'IN':''}} /- </div>
+      <div class="border" *ngIf="!isDataLoading"> Total : {{total | currency: 'IN':''}} /- </div>
     </div>
     <hr>
     <div class="card-body">
-      <person-expenses 
-        *ngFor="let people_expenses of people_expenses_lists" 
-        [personExpenses]="people_expenses"
-        (onTotalExpenseChange)="refreshExpense()"
-        (onPersonDelete)="deletePerson($event)"
-      ></person-expenses>
-      <button class="add-person" (click)="addExpense()">Add Person + </button>
+      <ng-container *ngIf="!isDataLoading">
+        <person-expenses 
+          *ngFor="let people_expenses of people_expenses_lists" 
+          [person]="people_expenses"
+          (onTotalExpenseChange)="refreshExpense()"
+          (onPersonDelete)="deletePerson($event)"
+        ></person-expenses>
+        <button class="add-person" (click)="addExpense()">Add Person + </button>
+      </ng-container>
     </div>
   </div>
 </div>

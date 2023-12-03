@@ -9,7 +9,7 @@ import { v4 as uuid, v4 } from 'uuid';
   styleUrls: ['./person-expense.component.scss']
 })
 export class PersonExpenseComponent implements OnInit {
-  @Input() personExpenses: PersonExpense = {id: v4(), personName: "", expenses: []};
+  @Input() person: PersonExpense = {_id: v4(), personName: "", personExpenses: []};
   @Output() onTotalExpenseChange: EventEmitter<number> = new EventEmitter<number>();
   @Output() onPersonDelete = new EventEmitter<string>();
   isHovered = false; 
@@ -27,33 +27,33 @@ export class PersonExpenseComponent implements OnInit {
 
   refreshExpense() {
     var totalExpense = 0;
-    this.personExpenses?.expenses?.forEach(expense => totalExpense += expense.money ?? 0);
+    this.person?.personExpenses?.forEach(expense => totalExpense += expense.money ?? 0);
     this.onTotalExpenseChange.emit(totalExpense);
   }
 
   deleteExpense(id: string) {
-    const index = this.personExpenses?.expenses?.findIndex(v => v.id == id);
-    if(index != undefined && index != -1) this.personExpenses?.expenses?.splice(index, 1);
+    const index = this.person?.personExpenses?.findIndex(v => v._id == id);
+    if(index != undefined && index != -1) this.person?.personExpenses?.splice(index, 1);
     this.refreshExpense();
   }
 
   addExpense() {
-    const id = uuid();
-    this.personExpenses?.expenses?.push({id});
+    const _id = uuid();
+    this.person?.personExpenses?.push({_id});
   }
 
   public deletePerson() {
-    this.onPersonDelete.emit(this.personExpenses.id!.toString());
+    this.onPersonDelete.emit(this.person._id!.toString());
   }
 
   public copyPersonExpense() {
-    if(!this.personExpenses.expenses) return;
-    let expenseTxt: String = this.personExpenses.personName ?? "";
+    if(!this.person.personExpenses) return;
+    let expenseTxt: String = this.person.personName ?? "";
     if(expenseTxt == "") expenseTxt = "person";
     expenseTxt += " : ";
 
     let total = 0;
-    const expenses = this.personExpenses.expenses;
+    const expenses = this.person.personExpenses;
 
     for(let i=0; i<expenses.length; i++) {
       total += expenses[i].money ?? 0;

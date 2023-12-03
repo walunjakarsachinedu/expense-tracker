@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Apollo, gql } from 'apollo-angular';
-import { ExpensesByMonth } from 'src/model/types';
-import people_expenses_lists from '../data/data';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Expense } from 'src/model/types';
 import { Router } from '@angular/router';
+import { ExpenseService } from '../services/expense-service.service';
+import { monthIndexToMonthEnum } from 'src/util/util';
 
 @Component({
   selector: 'home-page',
@@ -12,13 +12,58 @@ import { Router } from '@angular/router';
 export class HomePageComponent implements OnInit {
   title = 'expense-tracker';
   menuOpen = false;
-  expenseByMonth: ExpensesByMonth = people_expenses_lists;
+  expense?: Expense;
+  month: number = (new Date()).getMonth();
+  year: number = (new Date()).getFullYear();
+  isDataLoading = true;
 
 
-  constructor(public apollo: Apollo, private router: Router) { }
+  constructor(
+    private expenseService: ExpenseService, 
+    private router: Router, 
+    public cdr: ChangeDetectorRef
+  ) { 
+    this.loadMonthYearFromStorage();
+  }
 
   ngOnInit(): void {
-    // this.login();
+    this.loadExpense();
+  }
+
+
+  async loadExpense() {
+    this.isDataLoading = true;
+    try {
+      this.expense = await this.expenseService.getExpenseByMonth(monthIndexToMonthEnum(this.month), this.year);
+    } catch (err) {
+      console.log(err);
+    }
+    this.isDataLoading = false;
+  }
+
+  async createExpense() {
+    this.isDataLoading = true;
+    try {
+      this.expense = await this.expenseService.createExpenseOfMonth(monthIndexToMonthEnum(this.month), this.year);
+    } catch (err) {
+      console.log(err);
+    }
+    this.isDataLoading = false;
+  }
+
+  loadMonthYearFromStorage() {
+    let selectedMonth = localStorage.getItem('selectedMonth');
+    let selectedYear = localStorage.getItem('selectedYear');
+
+    if(selectedMonth) this.month = parseInt(selectedMonth);
+    if(selectedYear) this.year = parseInt(selectedYear);
+  }
+
+
+  onMonthSelect() {
+    localStorage.setItem("selectedMonth", this.month.toString());
+    localStorage.setItem("selectedYear", this.year.toString());
+    this.loadExpense();
   }
 
   logout() {
@@ -26,55 +71,4 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  login() {
-    const LOGIN = gql`
-      mutation login($email: String!, $password: String!) {
-        login(email: $email, password: $password)
-      }
-    `;
-    return this.apollo.mutate({
-      mutation: LOGIN,
-      variables: {
-        email: "walunjakarsachin@gmail.com",
-        password: "Sachin@123"
-      }
-    }).subscribe(({data, loading}) => {
-      if(!loading) {
-        let token: string|undefined;
-        if(data) token = (<any>data).login; 
-        if(!token) return;
-        localStorage.setItem('token', token);
-        this.getExpense();
-      }
-    })
-  }
-
-  getExpense() {
-    const EXPENSES = gql`
-      query getExpenses {
-        expenses {
-          month
-          personExpenses {
-            personName
-            personExpense {
-              money
-              tag
-            }
-          }
-        }
-      }
-    `
-    this.apollo.query({
-      query: EXPENSES,
-      context: {
-        // example of setting the headers with context per operation
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      }
-  
-    }).subscribe(({data, loading}) => {
-      if(data) console.log(data);
-    });
-  }
 }

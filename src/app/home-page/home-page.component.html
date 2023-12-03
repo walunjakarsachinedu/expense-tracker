@@ -2,14 +2,37 @@
   <div>Expense Tracker</div>
   <div class="d-flex align-items-center">
     <div class="menu">
-      <div id="calendar-icon" class="fas fa-calendar-o cursor-pointer" (click)="menuOpen = !menuOpen"></div>
-      <div class="submenu" *ngIf="menuOpen"> <monthpicker (onClickOutside)="menuOpen = !menuOpen"></monthpicker> </div>
+      <div id="calendar-icon" class="fas fa-calendar cursor-pointer" (click)="menuOpen = !menuOpen; cdr.detectChanges()"></div>
+      <div class="submenu" *ngIf="menuOpen"> 
+        <monthpicker 
+          [month]="month" 
+          [year]="year" 
+          (onClickOutside)="menuOpen = !menuOpen" 
+          (change)="month = $event.monthIndex; year = $event.year; onMonthSelect()"
+        ></monthpicker> 
+      </div>
     </div>
-    <div class="fas fa-sign-out-alt  ml-4 mt-2 cursor-pointer" (click)="logout()"></div>
+    <div class="fas fa-sign-out-alt mt-2 cursor-pointer" (click)="logout()"></div>
   </div>
 </div>
 <div class="hr"></div>
 <br><br>
-<expense-history [people_expenses_lists]="expenseByMonth.October!"></expense-history>
+<div *ngIf="!isDataLoading else loadingDataTemplate">
+  <expense-history 
+    *ngIf="expense?.personExpenses"
+    [people_expenses_lists]="expense?.personExpenses" 
+    [isDataLoading]="expense==undefined || expense==null"
+  ></expense-history>
+
+  <div class="center" *ngIf="!expense?.personExpenses">
+    <div id="add-expense-button" (click)='createExpense()'>Create expense for January</div>
+    <div class="info-text">Expense does not exist for this month, click the button above to create it</div>
+  </div>
+</div>
+<ng-template #loadingDataTemplate>
+  <div class="center">
+    Loading expense...
+  </div>
+</ng-template>
 
 <br><br><br><br><br>

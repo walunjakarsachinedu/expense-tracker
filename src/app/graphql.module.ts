@@ -1,12 +1,19 @@
 import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { NgModule } from '@angular/core';
-import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
+import { ApolloClientOptions, ApolloLink, InMemoryCache, from } from '@apollo/client/core';
+
+
+const addTokenLink = new ApolloLink((operation, forward) => {
+  var token = localStorage.getItem('token');
+  if(token) operation.setContext({ headers: { authorization: "Bearer " + token } });
+  return forward(operation);
+});
 
 const uri = 'https://expense-tracker-backend-api.netlify.app/graphql'; // <-- add the URL of the GraphQL server here
-export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
+function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   return {
-    link: httpLink.create({ uri }),
+    link: from([addTokenLink, httpLink.create({ uri })]),
     cache: new InMemoryCache(),
   };
 }

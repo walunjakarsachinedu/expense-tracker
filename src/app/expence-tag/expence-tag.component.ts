@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, ɵisEnvironmentProviders } from '@angular/core';
-import { Expense } from 'src/model/types';
+import { ExpenseTag } from 'src/model/types';
 import { v4 } from 'uuid';
 
 @Component({
@@ -8,8 +8,8 @@ import { v4 } from 'uuid';
   styleUrls: ['./expense-tag.component.scss']
 })
 export class ExpenseTagComponent {
-  @Output() onValueChange = new EventEmitter<Expense>();
+  @Output() onValueChange = new EventEmitter<ExpenseTag>();
   @Output() onExpenseDelete = new EventEmitter<string>();
-  @Input() expense: Expense = {id: v4()};
+  @Input() expense: ExpenseTag = {_id: v4()};
   isHovered = false;
 }

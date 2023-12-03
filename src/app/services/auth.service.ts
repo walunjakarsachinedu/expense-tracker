@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
+import { first } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,10 @@ export class AuthService {
       }
     `;
     return new Promise((resolve, reject) => {
-      const subscription = this.apollo.mutate({
+      this.apollo.mutate({
         mutation: LOGIN,
-        variables: {
-          email: email,
-          password: password
-        }
-      }).subscribe({
+        variables: { email, password }
+      }).pipe(first()).subscribe({
         next: ({data, loading}) => {
           if(!loading) {
             let token: string|undefined;
@@ -28,14 +26,39 @@ export class AuthService {
             if(!token) return reject("error in getting token");
             localStorage.setItem('token', token);
             resolve(token);
-            subscription.unsubscribe();
           }
         },
         error: err => {
           reject(err);
-          subscription.unsubscribe();
+        }
+      });
+    });
+  }
+
+  async signup(name: string, email: string, password: string): Promise<any> {
+    const SIGNUP = gql`
+      mutation signup($name: String!, $email: String!, $password: String!) {
+        signup(name: $name, email: $email, password: $password) {
+          _id
+          email
+          name
+        }
+      }
+    `
+    return new Promise((resolve, reject)=> {
+      this.apollo.mutate({
+        mutation: SIGNUP,
+        variables: { name, email, password }
+      }).pipe(first()).subscribe({
+        next: async ({data, loading}) => {
+          await this.login(email, password);
+          resolve(data);
+        },
+        error: err => {
+          reject(err);
         }
       });
     });
   }
 }
+

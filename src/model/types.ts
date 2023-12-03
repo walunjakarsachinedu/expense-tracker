@@ -1,28 +1,35 @@
 interface Expense {
-  id?: string;
+  _id?: string;
+  month?: Month;
+  year?: number;
+  personExpenses?: PersonExpense[];
+}
+
+interface PersonExpense {
+  _id?: String;
+  personName?: String; 
+  personExpenses?: ExpenseTag[];
+}
+
+interface ExpenseTag {
+  _id?: string;
   money?: number;
   tag?: string;
 }
 
-interface PersonExpense {
-  id?: String;
-  personName?: String; 
-  expenses?: Expense[];
-}
-
 enum Month {
-  January = 'January',
-  February = 'February',
-  March = 'March',
-  April = 'April',
-  May = 'May',
-  June = 'June',
-  July = 'July',
-  August = 'August',
-  September = 'September',
-  October = 'October',
-  November = 'November',
-  December = 'December',
+  January = 'JANUARY',
+  February = 'FEBRUARY',
+  March = 'MARCH',
+  April = 'APRIL',
+  May = 'MAY',
+  June = 'JUNE',
+  July = 'JULY',
+  August = 'AUGUST',
+  September = 'SEPTEMBER',
+  October = 'OCTOBER',
+  November = 'NOVEMBER',
+  December = 'DECEMBER',
 }
 
 type ExpensesByMonth = {
@@ -41,4 +48,4 @@ interface Position {
 }
 
 
-export {Expense, PersonExpense, ExpensesByMonth, Month, ContextMenuItem, Position};
+export { ExpenseTag, Expense, PersonExpense, ExpensesByMonth, Month, ContextMenuItem, Position };

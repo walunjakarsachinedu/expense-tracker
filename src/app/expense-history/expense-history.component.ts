@@ -8,16 +8,18 @@ import { v4 } from 'uuid';
   styleUrls: ['./expense-history.component.scss']
 })
 export class ExpenseHistoryComponent {
-  @Input() people_expenses_lists: PersonExpense[] = [];
+  @Input() people_expenses_lists?: PersonExpense[] = [];
+  @Input() isDataLoading = true;
+  @Input() expenseNotExist = false;
   total?: number;
 
   refreshExpense() {
     this.total = 0;
-    this.people_expenses_lists.forEach(person => person.expenses?.forEach(expense => this.total! += expense.money ?? 0));
+    this.people_expenses_lists?.forEach(person => person.personExpenses?.forEach(expense => this.total! += expense.money ?? 0));
   }
 
   addExpense() {
-    this.people_expenses_lists.push({id: v4(), personName:"", expenses: [{id: v4()}]})
+    this.people_expenses_lists?.push({_id: v4(), personName:"", personExpenses: [{_id: v4()}]})
   }
 
   ngOnInit():void {
@@ -25,9 +27,9 @@ export class ExpenseHistoryComponent {
   }
 
   deletePerson(id: string) {
-    for(let i=0; i<this.people_expenses_lists.length; i++) {
-      if(this.people_expenses_lists[i].id == id) {
-        this.people_expenses_lists.splice(i, 1);
+    for(let i=0; i<this.people_expenses_lists!.length; i++) {
+      if(this.people_expenses_lists![i]._id == id) {
+        this.people_expenses_lists!.splice(i, 1);
         break;
       }
     }

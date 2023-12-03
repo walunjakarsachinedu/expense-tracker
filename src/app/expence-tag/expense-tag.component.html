@@ -8,7 +8,7 @@
     <span content-editable class="expense-info right-round"
       [(input)]="expense.tag" (inputChange)="onValueChange.emit(expense)"
     ></span> &nbsp;
-    <div *ngIf="isHovered" class="delete-expense" (click)="onExpenseDelete.emit(expense.id)">
+    <div *ngIf="isHovered" class="delete-expense" (click)="onExpenseDelete.emit(expense._id)">
       <i class="fas fa-times"></i>
     </div>
   </span> 
