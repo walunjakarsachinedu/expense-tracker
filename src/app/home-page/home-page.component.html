@@ -3,7 +3,7 @@
   <div class="d-flex align-items-center">
     <div class="menu">
       <div id="calendar-icon" class="fa fa-calendar-o cursor-pointer" (click)="menuOpen = !menuOpen"></div>
-      <div class="submenu" *ngIf="menuOpen"> <monthpicker></monthpicker> </div>
+      <div class="submenu" *ngIf="menuOpen"> <monthpicker (onClickOutside)="menuOpen = !menuOpen"></monthpicker> </div>
     </div>
     <div class="fa fa-sign-out-alt  ml-4 mt-2 cursor-pointer" (click)="logout()"></div>
   </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import * as moment from 'moment';
 // import 'moment/locale/de';
 
@@ -7,7 +7,7 @@ import * as moment from 'moment';
   templateUrl: './month-picker.component.html',
   styleUrls: ['./month-picker.component.scss']
 })
-export class MonthPickerComponent implements OnInit {
+export class MonthPickerComponent implements OnInit, OnDestroy {
 
   @Input() locale?: string;
   @Input() year?: number;
@@ -22,6 +22,9 @@ export class MonthPickerComponent implements OnInit {
   @Input() multiple?: boolean; // TODO
 
   @Output() change = new EventEmitter<{ monthIndex: number, year: number }>();
+
+  isFirstClickedOutside = true; // boolean for ignoring first event, (is evnet of button for showing month-picker)
+  @Output() onClickOutside = new EventEmitter<void>();
 
   model?: MonthPickerModel;
 
@@ -46,7 +49,23 @@ export class MonthPickerComponent implements OnInit {
     }
 
     this.onChange(this.model!.selectedMonthIndex, this.model!.selectedMonthYear);
+
+    document.addEventListener('click', this.clickOutOfMonthPickerListener);
   }
+
+  ngOnDestroy(): void {
+    document.removeEventListener('click', this.clickOutOfMonthPickerListener);
+  }
+  
+  clickOutOfMonthPickerListener =  (event: any) => {
+    if(this.isFirstClickedOutside) {
+      this.isFirstClickedOutside = false;
+      return;
+    }
+    const monthPicker = document.getElementsByClassName('month-picker')[0] as HTMLElement;
+    var isClickInsideMonthPicker = monthPicker.contains(event.target as Node);
+    if (!isClickInsideMonthPicker) this.onClickOutside.emit();
+  };
 
   decrement() {
     this.model?.decrementYear();
