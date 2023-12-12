@@ -4,22 +4,22 @@
     <div>
         <!-- email field -->
         <input class="d-block" formControlName="email"  type="email" name="email" id="email" placeholder="Email" required>
-        <div *ngIf="form.controls['email'].touched && form.controls['email'].errors" class="error-text text-danger d-flex justify-content-start align-items-center">
-          <div *ngIf="form.controls['email'].errors?.['required']">Email is required</div>
-          <div *ngIf="form.controls['email'].errors?.['email']">Invalid email format</div>
+        <div *ngIf="form.controls['email']?.touched && form.controls['email']?.errors" class="error-text text-danger d-flex justify-content-start align-items-center">
+          <div *ngIf="form.controls['email']?.errors?.['required']">Email is required</div>
+          <div *ngIf="form.controls['email']?.errors?.['email']">Invalid email format</div>
         </div>
         <div *ngIf="showError" class="error-text text-danger d-flex justify-content-start align-items-center">Email or password is incorrect</div>
         <!-- password field -->
         <input formControlName="password" type="password" name="password" id="password" placeholder="Password" required>
-        <div *ngIf="form.controls['password'].touched && form.controls['password'].errors" class="error-text text-danger d-flex justify-content-start align-items-center">
-          <div *ngIf="form.controls['password'].errors?.['required']">Password is required</div>
+        <div *ngIf="form.controls['password']?.touched && form.controls['password']?.errors" class="error-text text-danger d-flex justify-content-start align-items-center">
+          <div *ngIf="form.controls['password']?.errors?.['required']">Password is required</div>
         </div>
         <div class="mt-4 size cursor-pointer" (click)="login(); isFormSumitted=true"> 
           <i class="p-3 fas fa-circle-notch fa-spin" [class]="isAuthenticating ? '': 'd-none'"></i> 
           <div class="mr-3">Login</div>
         </div>
         <!-- registration link -->
-        <div class="mt-4 text-center">Don't have account yet? <a routerLink="/signup">signup!</a></div>
+        <div class="mt-4 text-center">Don't have account yet? <a href="javascript:void(0);">signup!</a></div>
     </div>
   </form>
 </div>
