@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'login-page',
@@ -9,18 +9,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginPageComponent {
+  showError = false;
   form: FormGroup;
-  constructor(private authService: AuthService, private router: Router) { 
-    if(localStorage.getItem('token')) router.navigate(['/home']);
-    this.form = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]) ,
-      password: new FormControl('', [Validators.required])
+  isAuthenticating = false;
+
+  constructor(private authService: AuthService, private router: Router, private fb: FormBuilder) { 
+    this.form = fb.group({
+      email: fb.control('', [Validators.required, Validators.email]) ,
+      password: fb.control('', [Validators.required])
     });
   }
 
-  showError = false;
-  isAuthenticating = false;
-  isFormSumitted = false;
 
   
 
@@ -46,7 +45,4 @@ export class LoginPageComponent {
       this.form.controls["password"].markAsTouched();
     }
   }
-
-
-
 }

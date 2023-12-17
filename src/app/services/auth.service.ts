@@ -35,7 +35,7 @@ export class AuthService {
     });
   }
 
-  async signup(name: string, email: string, password: string): Promise<any> {
+  async signup(person: {name: string, email: string, password: string}): Promise<any> {
     const SIGNUP = gql`
       mutation signup($name: String!, $email: String!, $password: String!) {
         signup(name: $name, email: $email, password: $password) {
@@ -48,10 +48,10 @@ export class AuthService {
     return new Promise((resolve, reject)=> {
       this.apollo.mutate({
         mutation: SIGNUP,
-        variables: { name, email, password }
+        variables: { name: person.name, email: person.email, password: person.password }
       }).pipe(first()).subscribe({
         next: async ({data, loading}) => {
-          await this.login(email, password);
+          await this.login(person.email, person.password);
           resolve(data);
         },
         error: err => {

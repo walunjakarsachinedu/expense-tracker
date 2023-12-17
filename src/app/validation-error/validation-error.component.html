@@ -1,0 +1,12 @@
+<div *ngIf="field?.touched && field?.errors" class="error-text text-danger d-flex flex-column justify-content-start align-items-start" [style.maxWidth]="maxWidth">
+  <!-- show error priority wise -->
+  <div *ngIf="showOnlySingleError">
+    {{validationMsg}}
+  </div>
+  <!-- show all the errors -->
+  <div *ngIf="!showOnlySingleError">
+    <div *ngFor="let msg of validationMessages">
+      {{msg ?? "Error: Error message for the current error type is not found."}}
+    </div>
+  </div>
+</div>

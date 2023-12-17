@@ -17,6 +17,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SignupPageComponent } from './signup/signup.component';
+import { ValidationErrorComponent } from './validation-error/validation-error.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginPageComponent,
     HomePageComponent,
     PageNotFoundComponent,
+    SignupPageComponent,
+    ValidationErrorComponent,
   ],
   imports: [
     FormsModule,

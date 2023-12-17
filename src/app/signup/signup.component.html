@@ -1,0 +1,56 @@
+<h3 class="text-light d-flex justify-content-center mt-5">Signup</h3>
+<div class="d-flex flex-column align-items-center m-5">
+  <form [formGroup]="form" (ngSubmit)="signup();">
+    <div>
+        <!-- email field -->
+        <input formControlName="name" class="d-block" formControlName="name" placeholder="Name">
+        <validation-error 
+          [field]="form.controls['name']" 
+          [showOnlySingleError]="false" 
+          [errorMessages]='[
+            {type: "required", msg: "Name is required"},
+            {type: "minlength", msg: "Name should contain atleast 3 character"}
+          ]'
+        ></validation-error>
+
+        <!-- password field -->
+        <input formControlName="email" type="email" placeholder="Email">
+        <validation-error
+          [field]="form.controls['email']"
+          [errorMessages]='[ 
+            {type: "required", msg: "Email is required"},
+            {type: "email", msg: "Please enter valid email address"}
+          ]'
+        ></validation-error>
+
+        <!-- email field -->
+        <input class="d-block" formControlName="password"  type="password" placeholder="Password">
+        <validation-error 
+          maxWidth="400px"
+          [field]="form.controls['password']" 
+          [errorMessages]='[
+            {type: "required", msg: "Password is required"},
+            {type: "password", msg: "Password must be at least 8 characters long and include at least one letter, one digit, and one special character."}
+          ]'
+        ></validation-error>
+        <div *ngIf="showError" class="error-text text-danger d-flex justify-content-start align-items-center">Email or password is incorrect</div>
+
+        <!-- password field -->
+        <input formControlName="confirmPassword" type="confirmPassword" type="password" placeholder="Confirm password">
+        <validation-error
+          [field]="form.controls['confirmPassword']"
+          [errorMessages]='[ 
+            {type: "required", msg: "Confirm password is required"},
+            {type: "confirmPassword", msg: "Confirm password should match the entered password."}
+          ]'
+        ></validation-error>
+
+        <div class="submit-button mt-4 size cursor-pointer" (click)="signup();"> 
+          <i *ngIf="isAuthenticating" class="p-3 fas fa-circle-notch fa-spin"></i> 
+          <div [ngClass]="{'mr-5': isAuthenticating}">Signup</div>
+        </div>
+        <!-- registration link -->
+        <div class="mt-4 text-center">Already have account? <a [routerLink]="['/login']">login!</a></div>
+    </div>
+  </form>
+</div>
