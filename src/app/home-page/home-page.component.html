@@ -25,7 +25,7 @@
   ></expense-history>
 
   <div class="center" *ngIf="!expense?.personExpenses">
-    <div id="add-expense-button" (click)='createExpense()'>Create expense for January</div>
+    <div id="add-expense-button" (click)='createExpense()'>Create expense for {{monthIndexToEnum[month] | lowercase}}</div>
     <div class="info-text">Expense does not exist for this month, click the button above to create it</div>
   </div>
 </div>

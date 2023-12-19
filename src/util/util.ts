@@ -15,7 +15,7 @@ function getUserId(): string|undefined {
   return (<any>payload)?.sub;
 }
 
-const monthMap: {[key:number]: Month} =  {
+const monthIndexToEnum: {[key:number]: Month} =  {
     1 : Month.January,
     2 : Month.February,
     3 : Month.March,
@@ -28,10 +28,6 @@ const monthMap: {[key:number]: Month} =  {
     10 : Month.October,
     11 : Month.November,
     12 : Month.December,
-}
-
-function monthIndexToMonthEnum(monthIndex: number ) : Month {
-  return monthMap[monthIndex];
 }
 
 /** 
@@ -52,4 +48,4 @@ function apolloRequestToPromise<T>(observable: Observable<any>, dataPath: string
   });
 }
 
-export { getPayload, getUserId, monthIndexToMonthEnum, apolloRequestToPromise };
+export { monthIndexToEnum, getPayload, getUserId, apolloRequestToPromise };

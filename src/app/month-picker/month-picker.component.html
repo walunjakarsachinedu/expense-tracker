@@ -25,9 +25,9 @@
 					<div class="col col-4" *ngFor="let month of model!.months; let i = index">
 						<div class="month-picker-cell">
 							<button class="btn btn-block" 
-              [ngClass]="{'btn-primary': isSelectedMonth(i)}"
-              [disabled]="isDisabled(i)"
-							 (click)="selectMonth(i)">
+              [ngClass]="{'btn-primary': isSelectedMonth(i+1)}"
+              [disabled]="isDisabled(i+1)"
+							 (click)="selectMonth(i+1)">
                 <small>{{month}}</small>
               </button>
 						</div>

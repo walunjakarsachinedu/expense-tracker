@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Expense } from 'src/model/types';
 import { Router } from '@angular/router';
 import { ExpenseService } from '../services/expense-service.service';
-import { monthIndexToMonthEnum } from 'src/util/util';
+import { monthIndexToEnum } from 'src/util/util';
 
 @Component({
   selector: 'home-page',
@@ -16,6 +16,8 @@ export class HomePageComponent implements OnInit {
   month: number = (new Date()).getMonth();
   year: number = (new Date()).getFullYear();
   isDataLoading = true;
+
+  monthIndexToEnum = monthIndexToEnum;
 
 
   constructor(
@@ -34,7 +36,7 @@ export class HomePageComponent implements OnInit {
   async loadExpense() {
     this.isDataLoading = true;
     try {
-      this.expense = await this.expenseService.getExpenseByMonth(monthIndexToMonthEnum(this.month), this.year);
+      this.expense = await this.expenseService.getExpenseByMonth(monthIndexToEnum[this.month], this.year);
     } catch (err) {
       console.log(err);
     }
@@ -44,7 +46,7 @@ export class HomePageComponent implements OnInit {
   async createExpense() {
     this.isDataLoading = true;
     try {
-      this.expense = await this.expenseService.createExpenseOfMonth(monthIndexToMonthEnum(this.month), this.year);
+      this.expense = await this.expenseService.createExpenseOfMonth(monthIndexToEnum[this.month], this.year);
     } catch (err) {
       console.log(err);
     }
