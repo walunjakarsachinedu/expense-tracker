@@ -7,8 +7,9 @@
     </span>
     <span 
       content-editable 
+      placeholder="tag"
       (blur)="onBlur.emit()"
-      class="expense-info right-round"
+      class="expense-info right-round" 
       [(input)]="expense.tag" (inputChange)="onValueChange.emit(expense)"
     ></span> &nbsp;
     <div *ngIf="isHovered" class="delete-expense" (click)="onExpenseDelete.emit(expense._id)">

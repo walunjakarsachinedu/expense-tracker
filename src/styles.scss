@@ -52,3 +52,10 @@ hr {
 }
 
 
+// placeholder style for content editable
+
+[placeholder]:empty::before {
+  content: attr(placeholder);
+  color: #555; 
+  cursor: text;
+}

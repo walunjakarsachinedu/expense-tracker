@@ -7,11 +7,14 @@ export class ContentEditableDirective {
   @Input() type: "number"|"string" = "string";
   @Input() input?: any;
   @Output() inputChange = new EventEmitter<any>();
+  @Input() placeholder?: string;
 
   constructor(public el: ElementRef, renderer: Renderer2) { 
     el.nativeElement.contentEditable="plaintext-only";
+    el.nativeElement.placeholder=this.placeholder;
   }
-  
+
+
   @HostListener('input') onChange() {
     if(this.type == "number") this.removeNonDigitCharacter(this.el.nativeElement);
     this.setInput(this.el.nativeElement);
