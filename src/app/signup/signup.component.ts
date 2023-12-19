@@ -39,7 +39,7 @@ export class SignupPageComponent implements OnInit {
     const passwordValue = this?.form?.get('password')?.value;
     return (field.value == passwordValue) ? null : { 'confirmPassword': true }; 
   }
-
+  userAlreadyExists = false;
   async signup() {
     const name: string = this.form.controls['name'].value;
     const email: string = this.form.controls['email'].value;
@@ -53,9 +53,13 @@ export class SignupPageComponent implements OnInit {
         const token = localStorage.getItem('token');
         if(token) this.router.navigate(['/home']);
         else this.showError = true;
-      } catch (err) {
-        this.showError = true; 
       } 
+      catch (err: any) {
+        if(err.graphQLErrors.find((err: any) => err.extensions.code == "USER_ALREADY_EXISTS")) {
+          this.userAlreadyExists = true;
+        }
+        this.showError = true; 
+      }  
       this.isAuthenticating = false;
     } else {
       this.form.controls["name"].markAsTouched();

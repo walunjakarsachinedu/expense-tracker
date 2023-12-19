@@ -22,8 +22,9 @@
             {type: "email", msg: "Please enter valid email address"}
           ]'
         ></validation-error>
+        <div *ngIf="userAlreadyExists" class="width-400 error-text text-danger">User with this email address already exists. Please use different email.</div>
 
-        <!-- email field -->
+        <!-- password field -->
         <input class="d-block" formControlName="password"  type="password" placeholder="Password">
         <validation-error 
           maxWidth="400px"
@@ -33,9 +34,8 @@
             {type: "password", msg: "Password must be at least 8 characters long and include at least one letter, one digit, and one special character."}
           ]'
         ></validation-error>
-        <div *ngIf="showError" class="error-text text-danger d-flex justify-content-start align-items-center">Email or password is incorrect</div>
 
-        <!-- password field -->
+        <!-- confirm password field -->
         <input formControlName="confirmPassword" type="confirmPassword" type="password" placeholder="Confirm password">
         <validation-error
           [field]="form.controls['confirmPassword']"
