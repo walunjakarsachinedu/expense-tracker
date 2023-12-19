@@ -9,12 +9,14 @@
   <span 
     class="person-name" 
     content-editable 
+    (blur)="updatePersonName()"
     placeholder="person name" 
     [(input)]="person.personName"
   > </span>: &nbsp;
   <span class="expense-entry">
     <div *ngFor="let expense of person!.personExpense">
       <expense-tag 
+        (onBlur)="updateExpense(expense)"
         [expense]="expense"
         (onExpenseDelete)="deleteExpense($event)"
         (onValueChange)="refreshExpense()"

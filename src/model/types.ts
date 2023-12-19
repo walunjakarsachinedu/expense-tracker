@@ -7,7 +7,7 @@ interface Expense {
 
 interface PersonExpense {
   _id: string;
-  personName?: String; 
+  personName?: string; 
   personExpense?: ExpenseTag[];
 }
 

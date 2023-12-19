@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ClipboardService } from 'ngx-clipboard';
-import { ContextMenuItem, PersonExpense } from 'src/model/types';
+import { ContextMenuItem, ExpenseTag, PersonExpense } from 'src/model/types';
 import { v4 as uuid, v4 } from 'uuid';
 import { ExpenseService } from '../services/expense-service.service';
 
@@ -53,8 +53,16 @@ export class PersonExpenseComponent implements OnInit {
     .catch(() => this.person?.personExpense?.pop());
   }
 
+  async updateExpense(expense: ExpenseTag) {
+    this.expenseService.updatePersonExpense(this.person!._id, expense);
+  }
+
   public deletePerson() {
     this.onPersonDelete.emit(this.person?._id!.toString());
+  }
+
+  public updatePersonName() {
+    this.expenseService.updatePersonName(this.person!._id, this.person?.personName ?? '');
   }
 
   public copyPersonExpense() {

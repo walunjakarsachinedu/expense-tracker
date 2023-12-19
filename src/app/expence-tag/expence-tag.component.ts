@@ -11,5 +11,6 @@ export class ExpenseTagComponent {
   @Output() onValueChange = new EventEmitter<ExpenseTag>();
   @Output() onExpenseDelete = new EventEmitter<string>();
   @Input() expense: ExpenseTag = {_id: v4()};
+  @Output() onBlur = new EventEmitter<void>();
   isHovered = false;
 }

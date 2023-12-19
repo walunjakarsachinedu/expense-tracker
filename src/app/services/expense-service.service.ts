@@ -142,7 +142,7 @@ export class ExpenseService {
     );
   }
 
-  updatePersonExpense(personId: string, expenseTagId: string, expenseTag: {money: number, tag: string}): Promise<ExpenseTag> {
+  updatePersonExpense(personId: string, expenseTag: ExpenseTag): Promise<ExpenseTag> {
     const updatePersonExpense = gql`
       mutation updatePersonExpense($expenseId: String!, $personId: ID!, $expenseTagId: ID!, $expenseTag: ExpenseTagInput!) {
         updatePersonExpense(expenseId: $expenseId, personId: $personId, expenseTagId: $expenseTagId, expenseTag: $expenseTag) {
@@ -155,7 +155,11 @@ export class ExpenseService {
     return apolloRequestToPromise(
       this.apollo.mutate({
         mutation: updatePersonExpense,
-        variables: { expenseId: this.expenseId, personId, expenseTagId, expenseTag }
+        variables: { 
+          expenseId: this.expenseId, 
+          personId, expenseTagId: 
+          expenseTag._id, 
+          expenseTag: {money: expenseTag.money, tag: expenseTag.tag} },
       }),
       "updatePersonExpense"
     );
