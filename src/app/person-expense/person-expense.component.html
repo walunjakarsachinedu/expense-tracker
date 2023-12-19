@@ -22,7 +22,7 @@
         (onValueChange)="refreshExpense()"
       ></expense-tag>
     </div>
-    <div *ngIf="isHovered" class="add-expense" (click)="addExpense()">+</div>
+    <div *ngIf="isHovered || person.personExpense?.length == 0" class="add-expense" (click)="addExpense()">+</div>
   </span>
 </div>
 <br>
