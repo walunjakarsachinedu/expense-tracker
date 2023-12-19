@@ -1,18 +1,18 @@
 interface Expense {
-  _id?: string;
+  _id: string;
   month?: Month;
   year?: number;
   personExpenses?: PersonExpense[];
 }
 
 interface PersonExpense {
-  _id?: String;
+  _id: String;
   personName?: String; 
-  personExpenses?: ExpenseTag[];
+  personExpense?: ExpenseTag[];
 }
 
 interface ExpenseTag {
-  _id?: string;
+  _id: string;
   money?: number;
   tag?: string;
 }

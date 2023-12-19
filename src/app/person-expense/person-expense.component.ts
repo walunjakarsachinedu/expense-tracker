@@ -9,7 +9,7 @@ import { v4 as uuid, v4 } from 'uuid';
   styleUrls: ['./person-expense.component.scss']
 })
 export class PersonExpenseComponent implements OnInit {
-  @Input() person: PersonExpense = {_id: v4(), personName: "", personExpenses: []};
+  @Input() person: PersonExpense = {_id: v4(), personName: "", personExpense: []};
   @Output() onTotalExpenseChange: EventEmitter<number> = new EventEmitter<number>();
   @Output() onPersonDelete = new EventEmitter<string>();
   isHovered = false; 
@@ -27,19 +27,19 @@ export class PersonExpenseComponent implements OnInit {
 
   refreshExpense() {
     var totalExpense = 0;
-    this.person?.personExpenses?.forEach(expense => totalExpense += expense.money ?? 0);
+    this.person?.personExpense?.forEach(expense => totalExpense += expense.money ?? 0);
     this.onTotalExpenseChange.emit(totalExpense);
   }
 
   deleteExpense(id: string) {
-    const index = this.person?.personExpenses?.findIndex(v => v._id == id);
-    if(index != undefined && index != -1) this.person?.personExpenses?.splice(index, 1);
+    const index = this.person?.personExpense?.findIndex(v => v._id == id);
+    if(index != undefined && index != -1) this.person?.personExpense?.splice(index, 1);
     this.refreshExpense();
   }
 
   addExpense() {
     const _id = uuid();
-    this.person?.personExpenses?.push({_id});
+    this.person?.personExpense?.push({_id});
   }
 
   public deletePerson() {
@@ -47,13 +47,13 @@ export class PersonExpenseComponent implements OnInit {
   }
 
   public copyPersonExpense() {
-    if(!this.person.personExpenses) return;
+    if(!this.person.personExpense) return;
     let expenseTxt: String = this.person.personName ?? "";
     if(expenseTxt == "") expenseTxt = "person";
     expenseTxt += " : ";
 
     let total = 0;
-    const expenses = this.person.personExpenses;
+    const expenses = this.person.personExpense;
 
     for(let i=0; i<expenses.length; i++) {
       total += expenses[i].money ?? 0;

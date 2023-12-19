@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { PersonExpense } from 'src/model/types';
-import { v4 } from 'uuid';
+import { ExpenseService } from '../services/expense-service.service';
 
 @Component({
   selector: 'expense-history',
@@ -13,25 +13,27 @@ export class ExpenseHistoryComponent {
   @Input() expenseNotExist = false;
   total?: number;
 
-  refreshExpense() {
+  constructor(private expenseService: ExpenseService) {}
+
+  calculateTotal() {
     this.total = 0;
-    this.people_expenses_lists?.forEach(person => person.personExpenses?.forEach(expense => this.total! += expense.money ?? 0));
+    this.people_expenses_lists?.forEach(person => person.personExpense?.forEach(expense => this.total! += expense.money ?? 0));
   }
 
-  addExpense() {
-    this.people_expenses_lists?.push({_id: v4(), personName:"", personExpenses: [{_id: v4()}]})
+  async addExpense() {
+    const person = await this.expenseService.addPerson("");
+    this.people_expenses_lists?.push(person);
   }
 
   ngOnInit():void {
-    this.refreshExpense();
+    this.calculateTotal();
   }
 
-  deletePerson(id: string) {
-    for(let i=0; i<this.people_expenses_lists!.length; i++) {
-      if(this.people_expenses_lists![i]._id == id) {
-        this.people_expenses_lists!.splice(i, 1);
-        break;
-      }
-    }
+  async deletePerson(id: string) {
+    let deletePos = this.people_expenses_lists?.findIndex(person => person._id == id);
+    let removedPerson = this.people_expenses_lists!.splice(deletePos!, 1);
+    await this.expenseService.removePerson(id).catch(() => {
+      this.people_expenses_lists?.splice(deletePos!, 0, ...removedPerson);
+    });
   }
 }

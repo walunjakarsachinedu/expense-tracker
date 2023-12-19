@@ -8,7 +8,7 @@
   ></div>
   <span class="person-name" [ngClass]="{'pl-15': (person.personName ?? '') == ''}" content-editable placeholder="person name" [(input)]="person.personName"></span>: &nbsp;
   <span class="expense-entry">
-    <div *ngFor="let expense of person!.personExpenses">
+    <div *ngFor="let expense of person!.personExpense">
       <expense-tag 
         [expense]="expense"
         (onExpenseDelete)="deleteExpense($event)"
