@@ -22,19 +22,21 @@ export class ContentEditableDirective {
   }
 
   private setInput(inputElement: any) {
+    if(inputElement.textContent == "") return;
     const cursorPosition = this.getSelectionStart(inputElement, 0);
     this.input = (this.type=="number") ? parseInt(inputElement.textContent) : inputElement.textContent;
     if(inputElement.textContent == '' && this.type=="number") this.input = undefined;
     this.inputChange.emit(this.input);
-    if(inputElement.textContent != "") this.setSelectionRange(inputElement, cursorPosition, cursorPosition);
+    this.setSelectionRange(inputElement, cursorPosition, cursorPosition);
   }
 
   private removeNonDigitCharacter(inputElement: any) {
+    if(inputElement.textContent == "") return;
     const numericValue = inputElement.textContent.replace(/[^0-9]/g, '');
     if(!/[^0-9]/g.test(inputElement.textContent)) return;
     const cursorPosition = this.getSelectionStart(inputElement);
     this.el.nativeElement.textContent = numericValue;
-    if(inputElement.textContent != "") this.setSelectionRange(inputElement, cursorPosition, cursorPosition);
+    this.setSelectionRange(inputElement, cursorPosition, cursorPosition);
   }
 
   private getSelectionStart(inputElement: HTMLDivElement, offset = 1): number {

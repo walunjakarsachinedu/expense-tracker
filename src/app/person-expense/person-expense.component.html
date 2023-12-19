@@ -6,7 +6,12 @@
   <div class="fas fa-bars reorder-icon" [ngClass]="{'hidden': !isHovered}"
     contextMenuDir [items]="contextMenuItems"
   ></div>
-  <span class="person-name" [ngClass]="{'pl-15': (person.personName ?? '') == ''}" content-editable placeholder="person name" [(input)]="person.personName"></span>: &nbsp;
+  <span 
+    class="person-name" 
+    content-editable 
+    placeholder="person name" 
+    [(input)]="person.personName"
+  > </span>: &nbsp;
   <span class="expense-entry">
     <div *ngFor="let expense of person!.personExpense">
       <expense-tag 
