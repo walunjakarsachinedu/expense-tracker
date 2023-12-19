@@ -37,7 +37,7 @@ export class ExpenseService {
       }), 
       "expenseOfMonth"
     );
-    this.expenseId = expense._id;
+    this.expenseId = expense?._id;
     return expense;
   }
 
@@ -123,7 +123,7 @@ export class ExpenseService {
     )
   }
 
-  addPersonExpense(personId: string, expenseTag: {money: number, tag: string}): Promise<ExpenseTag> {
+  addPersonExpense(personId: string, expenseTag: {money?: number, tag?: string}): Promise<ExpenseTag> {
     const addPersonExpense = gql`
       mutation addPersonExpense($expenseId: String!, $personId: ID!, $expenseTag: ExpenseTagInput!) {
         addPersonExpense(expenseId: $expenseId, personId: $personId, expenseTag: $expenseTag) {

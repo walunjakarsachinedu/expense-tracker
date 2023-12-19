@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ClipboardService } from 'ngx-clipboard';
 import { ContextMenuItem, PersonExpense } from 'src/model/types';
 import { v4 as uuid, v4 } from 'uuid';
+import { ExpenseService } from '../services/expense-service.service';
 
 @Component({
   selector: 'person-expenses',
@@ -9,12 +10,15 @@ import { v4 as uuid, v4 } from 'uuid';
   styleUrls: ['./person-expense.component.scss']
 })
 export class PersonExpenseComponent implements OnInit {
-  @Input() person: PersonExpense = {_id: v4(), personName: "", personExpense: []};
+  @Input() person?: PersonExpense;
   @Output() onTotalExpenseChange: EventEmitter<number> = new EventEmitter<number>();
   @Output() onPersonDelete = new EventEmitter<string>();
   isHovered = false; 
 
-  constructor(private clipboardService: ClipboardService) { }
+  constructor(
+    private clipboardService: ClipboardService,
+    private expenseService: ExpenseService
+  ) { }
 
   contextMenuItems: ContextMenuItem[] = [
     { name: "Delete", icon: "fas fa-trash", onTap: this.deletePerson.bind(this) },
@@ -22,6 +26,7 @@ export class PersonExpenseComponent implements OnInit {
   ]; 
 
   ngOnInit():void {
+    if(!this.person) throw Error("Person not provided");
     this.refreshExpense();
   }
 
@@ -32,22 +37,28 @@ export class PersonExpenseComponent implements OnInit {
   }
 
   deleteExpense(id: string) {
-    const index = this.person?.personExpense?.findIndex(v => v._id == id);
-    if(index != undefined && index != -1) this.person?.personExpense?.splice(index, 1);
+    const index = this.person?.personExpense?.findIndex(v => v._id == id)!;
+    const deletedExpense = this.person?.personExpense?.splice(index, 1)!;
     this.refreshExpense();
+    this.expenseService.removePersonExpense(this.person!._id, id)
+    .catch(() => this.person?.personExpense?.splice(index, 0, ...deletedExpense));
   }
 
-  addExpense() {
-    const _id = uuid();
-    this.person?.personExpense?.push({_id});
+  async addExpense() {
+    if(!this.person!.personExpense) return;
+    const expense = {_id: uuid()};
+    this.person!.personExpense!.push(expense);
+    await this.expenseService.addPersonExpense(this.person!._id, {tag: ""})
+    .then((uploadedExpense) => expense._id = uploadedExpense._id)
+    .catch(() => this.person?.personExpense?.pop());
   }
 
   public deletePerson() {
-    this.onPersonDelete.emit(this.person._id!.toString());
+    this.onPersonDelete.emit(this.person?._id!.toString());
   }
 
   public copyPersonExpense() {
-    if(!this.person.personExpense) return;
+    if(!this.person?.personExpense) return;
     let expenseTxt: String = this.person.personName ?? "";
     if(expenseTxt == "") expenseTxt = "person";
     expenseTxt += " : ";
