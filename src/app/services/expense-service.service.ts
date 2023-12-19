@@ -31,7 +31,8 @@ export class ExpenseService {
     return apolloRequestToPromise(
       this.apollo.query({
         query: expenseOfMonth,
-        variables: { month, year }
+        variables: { month, year },
+        fetchPolicy: "no-cache"
       }), 
       "expenseOfMonth"
     );
