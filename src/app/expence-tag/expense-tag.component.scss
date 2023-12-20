@@ -24,7 +24,8 @@
   border-top: 1.5px solid;
   border-bottom: 1.5px solid;
   // background-color: #EBBCBC;
-  padding: 7px 10px;
+  display: inline-block;
+  padding: 5px 10px;
   margin-right: 2px;
   box-shadow: 0px 5px 10px #dedede;
   border-color: rgba(0,0,0,0.125);
@@ -51,8 +52,8 @@ input:focus {
 
 .delete-expense {
   position: absolute;
-  top: -18px;
-  right: 3px;
+  top: -13px;
+  right: 1px;
   cursor: pointer;
   color: rgba(0,0,0,0.5);
   background-color: white;

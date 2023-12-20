@@ -9,22 +9,23 @@
   margin-right: 2px;
 }
 
-.expense-entry {
+.expense-entries {
   display: flex;
   flex-wrap: wrap; /* Allow items to wrap to the next line */
   align-items: center;
   row-gap: 25px;
+  transform: translateY(-5px);
 }
 
 .persons-expense {
   display: flex;
-  align-items: center;
   margin-bottom: 20px;
 }
 
 .person-name {
   padding-right: 5px;
   font-size: large;
+  transform: translateY(-2px);
 }
 
 .pl-15 {
