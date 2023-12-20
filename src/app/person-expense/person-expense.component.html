@@ -24,7 +24,7 @@
         (onValueChange)="refreshExpense()"
       ></expense-tag>
     </div>
-    <div *ngIf="isHovered || person.personExpense?.length == 0" class="add-expense" (click)="addExpense()">+</div>
+    <div *ngIf="isHovered || person.personExpense?.length == 0" class="add-expense" [class]="person.personExpense?.length == 0 ? 'translate-down': ''" (click)="addExpense()">+</div>
   </span>
 </div>
 <br>
