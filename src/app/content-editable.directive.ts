@@ -16,8 +16,10 @@ export class ContentEditableDirective {
 
 
   @HostListener('input') onChange() {
-    if(this.type == "number") this.removeNonDigitCharacter(this.el.nativeElement);
-    this.setInput(this.el.nativeElement);
+    const inputElement = this.el.nativeElement;
+    if(inputElement.textContent == '') return this.inputChange.emit('');
+    if(this.type == "number") this.removeNonDigitCharacter(inputElement);
+    this.setInput(inputElement);
   }
 
   ngOnInit() {
@@ -25,7 +27,6 @@ export class ContentEditableDirective {
   }
 
   private setInput(inputElement: any) {
-    if(inputElement.textContent == "") return;
     const cursorPosition = this.getSelectionStart(inputElement, 0);
     this.input = (this.type=="number") ? parseInt(inputElement.textContent) : inputElement.textContent;
     if(inputElement.textContent == '' && this.type=="number") this.input = undefined;
@@ -34,7 +35,6 @@ export class ContentEditableDirective {
   }
 
   private removeNonDigitCharacter(inputElement: any) {
-    if(inputElement.textContent == "") return;
     const numericValue = inputElement.textContent.replace(/[^0-9]/g, '');
     if(!/[^0-9]/g.test(inputElement.textContent)) return;
     const cursorPosition = this.getSelectionStart(inputElement);
