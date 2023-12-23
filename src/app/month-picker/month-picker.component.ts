@@ -46,7 +46,7 @@ export class MonthPickerComponent implements OnInit, OnDestroy {
       if (this.year) this.model!.selectedMonthYear = this.year;
     }
 
-    this.onChange(this.model!.selectedMonthIndex, this.model!.selectedMonthYear);
+    // this.onChange(this.model!.selectedMonthIndex, this.model!.selectedMonthYear);
 
     document.addEventListener('click', this.clickOutOfMonthPickerListener);
   }
