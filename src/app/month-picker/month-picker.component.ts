@@ -23,6 +23,7 @@ export class MonthPickerComponent implements OnInit, OnDestroy {
   @Output() change = new EventEmitter<{ monthIndex: number, year: number }>();
 
   isFirstClickedOutside = true;
+  isYearSelectedRecently = false;
   @Output() onClickOutside = new EventEmitter<void>();
 
   model?: MonthPickerModel;
@@ -58,6 +59,10 @@ export class MonthPickerComponent implements OnInit, OnDestroy {
   clickOutOfMonthPickerListener = (event: any) => {
     if (this.isFirstClickedOutside) {
       this.isFirstClickedOutside = false;
+      return;
+    }
+    if(this.isYearSelectedRecently) {
+      this.isYearSelectedRecently = false;
       return;
     }
     const monthPicker = document.getElementsByClassName('month-picker')[0] as HTMLElement;
@@ -121,6 +126,7 @@ export class MonthPickerComponent implements OnInit, OnDestroy {
   }
 
   selectYear(year: number) {
+    this.isYearSelectedRecently = true;
     this.isShowYears = false;
     this.model!.selectedYear = DateTime.local().set({ year: year });
     this.model!.updateYearText();
