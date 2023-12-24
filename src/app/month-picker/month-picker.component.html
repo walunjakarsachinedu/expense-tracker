@@ -39,7 +39,7 @@
 					<div class="col col-4" *ngFor="let year of years; let i = index">
 						<div class="month-picker-cell">
 							<button class="btn btn-block" 
-              [ngClass]="{'btn-primary': isSelectedYear(year)}"
+              [ngClass]="{'btn-primary': this.currentlySelectedYear === year}"
               [disabled]="isDisabledYear(year)"
               (click)="selectYear(year)"
               >

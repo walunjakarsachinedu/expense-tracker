@@ -90,6 +90,7 @@ export class MonthPickerComponent implements OnInit, OnDestroy {
   }
 
   selectMonth(index: number) {
+    this.selectYear(this.model!.selectedYear.year);
     this.model!.selectMonth(index);
     this.onChange(this.model!.selectedMonthIndex, this.model!.selectedMonthYear);
   }
@@ -134,7 +135,7 @@ export class MonthPickerComponent implements OnInit, OnDestroy {
     this.isYearSelectedRecently = true;
     this.isShowYears = false;
     this.model!.selectedYear = DateTime.local().set({ year: year });
-    this.currentlySelectedYear = this.year;
+    this.currentlySelectedYear = year;
     this.yearChange.emit(year);
     this.model!.updateYearText();
   }
