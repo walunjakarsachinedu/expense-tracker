@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 import { Observable, first } from "rxjs";
-import { Month } from "src/model/types";
+import { Month, PersonExpense } from "src/model/types";
 
 function getPayload(): string|undefined {
   const token = localStorage.getItem('token');
@@ -48,4 +48,54 @@ function apolloRequestToPromise<T>(observable: Observable<any>, dataPath: string
   });
 }
 
-export { monthIndexToEnum, getPayload, getUserId, apolloRequestToPromise };
+
+
+function getExpenseHistoryToFormatedString(people_expenses_lists: PersonExpense[]) {
+    let personWiseTotal = `Person-Wise Total:`;
+    let index = 0;
+    people_expenses_lists?.forEach((person) => {
+      ++index;
+
+      personWiseTotal +=`
+${index}. ${person.personName}:`;
+
+      person.personExpense?.forEach((expense) => {
+        personWiseTotal += `
+  - ${expense.tag}:  ${expense.money} ₹`
+      });
+
+      personWiseTotal += `
+      `;
+    });
+
+    let completeTotal = `Complete Total:`;
+    people_expenses_lists?.forEach((person) => {
+      let total = 0;
+      person.personExpense?.forEach(expense => {
+        if(expense.money) total += expense.money;
+      });
+      completeTotal += `
+  - ${person.personName}: ${total} ₹
+      `;
+    });
+
+    let grandTotal = `Grand Total:`;
+    let total = 0;
+    people_expenses_lists?.forEach(person => {
+      person.personExpense?.forEach(expense => {
+        if(expense.money) total += expense.money;
+      });
+    });
+
+    grandTotal += `
+Total: ${total} ₹ 
+    `
+
+    let expenseStr = `${personWiseTotal}
+${completeTotal}
+${grandTotal}
+    `
+    return expenseStr;
+  }
+
+export { monthIndexToEnum, getPayload, getUserId, apolloRequestToPromise, getExpenseHistoryToFormatedString };

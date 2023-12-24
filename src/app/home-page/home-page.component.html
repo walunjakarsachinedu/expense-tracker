@@ -1,6 +1,9 @@
 <div class="title d-flex align-items-center justify-content-between">
   <div>Expense Tracker</div>
   <div class="d-flex align-items-center">
+    <div *ngIf="expense?.personExpenses" class="header-button cursor-pointer user-select-none" (click)="copyExpenseHistory()">
+      <i class="sm fas fa-copy"></i> copy expense 
+    </div>
     <div class="menu">
       <div class="header-button cursor-pointer user-select-none" (click)="menuOpen = !menuOpen; cdr.detectChanges()">
          {{monthShortNames[month]}} {{year}} 

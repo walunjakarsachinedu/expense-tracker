@@ -2,7 +2,8 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Expense } from 'src/model/types';
 import { Router } from '@angular/router';
 import { ExpenseService } from '../services/expense-service.service';
-import { monthIndexToEnum } from 'src/util/util';
+import { getExpenseHistoryToFormatedString, monthIndexToEnum } from 'src/util/util';
+import { ClipboardService } from 'ngx-clipboard';
 
 @Component({
   selector: 'home-page',
@@ -23,6 +24,7 @@ export class HomePageComponent implements OnInit {
 
   constructor(
     private expenseService: ExpenseService, 
+    private clipboardService: ClipboardService,
     private router: Router, 
     public cdr: ChangeDetectorRef
   ) { 
@@ -73,6 +75,11 @@ export class HomePageComponent implements OnInit {
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
+  }
+
+  copyExpenseHistory() {
+    const expenseHistoryToFormatedString = getExpenseHistoryToFormatedString(this.expense!.personExpenses!);
+    this.clipboardService.copy(expenseHistoryToFormatedString);
   }
 
 }
