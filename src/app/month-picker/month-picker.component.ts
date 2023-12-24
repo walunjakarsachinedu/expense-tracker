@@ -180,12 +180,12 @@ export class MonthPickerModel {
   }
 
   incrementYear() {
-    this.selectedYear = this.selectedYear.plus({ years: 1 });
+    this.selectedYear = this.selectedYear.plus({ years: 12 });
     this.updateYearText();
   }
 
   decrementYear() {
-    this.selectedYear = this.selectedYear.minus({ years: 1 });
+    this.selectedYear = this.selectedYear.minus({ years: 12 });
     this.updateYearText();
   }
 }
