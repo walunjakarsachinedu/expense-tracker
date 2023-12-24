@@ -21,8 +21,8 @@ export class PersonExpenseComponent implements OnInit {
   ) { }
 
   contextMenuItems: ContextMenuItem[] = [
-    { name: "Delete", icon: "fas fa-trash", onTap: this.deletePerson.bind(this) },
     { name: "Copy", icon: "fas fa-clone", onTap: this.copyPersonExpense.bind(this) },
+    { name: "Delete", icon: "fas fa-trash", onTap: this.deletePerson.bind(this) },
   ]; 
 
   ngOnInit():void {
