@@ -20,11 +20,16 @@ export class MonthPickerComponent implements OnInit, OnDestroy {
 
   @Input() multiple?: boolean;
 
+  @Output() yearChange = new EventEmitter<number>();
+
   @Output() change = new EventEmitter<{ monthIndex: number, year: number }>();
+
+  @Output() onClickOutside = new EventEmitter<void>();
 
   isFirstClickedOutside = true;
   isYearSelectedRecently = false;
-  @Output() onClickOutside = new EventEmitter<void>();
+
+  currentlySelectedYear?: number;
 
   model?: MonthPickerModel;
 
@@ -44,7 +49,7 @@ export class MonthPickerComponent implements OnInit, OnDestroy {
     if (this.month) {
       this.model!.selectedMonthIndex = this.month;
       this.model!.selectedMonth = DateTime.local().set({ month: this.month });
-      if (this.year) this.model!.selectedMonthYear = this.year;
+      this.currentlySelectedYear = this.model!.selectedMonthYear;
     }
 
     // this.onChange(this.model!.selectedMonthIndex, this.model!.selectedMonthYear);
@@ -71,14 +76,14 @@ export class MonthPickerComponent implements OnInit, OnDestroy {
   };
 
   decrement() {
-    this.model?.decrementYear();
+    this.model?.decrementYear(this.isShowYears ? 12 : 1);
     if (this.isShowYears) {
       this.renderYears();
     }
   }
 
   increment() {
-    this.model?.incrementYear();
+    this.model?.incrementYear(this.isShowYears ? 12 : 1);
     if (this.isShowYears) {
       this.renderYears();
     }
@@ -129,11 +134,13 @@ export class MonthPickerComponent implements OnInit, OnDestroy {
     this.isYearSelectedRecently = true;
     this.isShowYears = false;
     this.model!.selectedYear = DateTime.local().set({ year: year });
+    this.currentlySelectedYear = this.year;
+    this.yearChange.emit(year);
     this.model!.updateYearText();
   }
 
   isSelectedYear(year: number) {
-    return this.model!.selectedYear.year === year;
+    return this.currentlySelectedYear === year;
   }
 
   isDisabledYear(year: number) {
@@ -179,13 +186,13 @@ export class MonthPickerModel {
     this.selectedMonthYear = this.selectedYear.year;
   }
 
-  incrementYear() {
-    this.selectedYear = this.selectedYear.plus({ years: 12 });
+  incrementYear(unit = 12) {
+    this.selectedYear = this.selectedYear.plus({ years: unit });
     this.updateYearText();
   }
 
-  decrementYear() {
-    this.selectedYear = this.selectedYear.minus({ years: 12 });
+  decrementYear(unit = 12) {
+    this.selectedYear = this.selectedYear.minus({ years: unit });
     this.updateYearText();
   }
 }

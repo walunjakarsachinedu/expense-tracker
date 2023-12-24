@@ -16,6 +16,7 @@ export class HomePageComponent implements OnInit {
   month: number = (new Date()).getMonth();
   year: number = (new Date()).getFullYear();
   isDataLoading = true;
+  monthShortNames = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   monthIndexToEnum = monthIndexToEnum;
 

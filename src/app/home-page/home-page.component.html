@@ -1,14 +1,17 @@
-<div class="title">
+<div class="title d-flex align-items-center justify-content-between">
   <div>Expense Tracker</div>
   <div class="d-flex align-items-center">
     <div class="menu">
-      <div id="calendar-icon" class="fas fa-calendar cursor-pointer" (click)="menuOpen = !menuOpen; cdr.detectChanges()"></div>
+      <div class="month-selector-button cursor-pointer user-select-none" (click)="menuOpen = !menuOpen; cdr.detectChanges()">
+         {{monthShortNames[month]}} {{year}} 
+        <i class="sm fas fa-light" [class]="menuOpen ? 'fa-chevron-up': 'fa-chevron-down'"></i>
+      </div>
       <div class="submenu" *ngIf="menuOpen"> 
         <monthpicker 
           [month]="month" 
-          [year]="year" 
+          [(year)]="year" 
           (onClickOutside)="menuOpen = !menuOpen" 
-          (change)="month = $event.monthIndex; year = $event.year; onMonthSelect()"
+          (change)="month = $event.monthIndex; onMonthSelect()"
         ></monthpicker> 
       </div>
     </div>

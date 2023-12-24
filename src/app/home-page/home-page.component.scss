@@ -1,11 +1,8 @@
 .title {
   font-weight: 300;
-  font-size: xx-large;
+  font-size: x-large;
   margin: 20px;
   margin-right: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .hr {
@@ -21,6 +18,7 @@
 
 .submenu {
   position: absolute;
+  margin-top: 3px;
   right: 0;
   z-index: 2;
   box-shadow: 0px 5px 15px #dedede;
@@ -43,6 +41,11 @@
 
 .fas {
   font-size: 21px;
+}
+.fas.sm {
+  font-size: 10px;
+  color: white;
+  transform: translateY(-1.3px);
 }
 
 .fas.fa-sign-out-alt {
@@ -72,4 +75,11 @@
   margin-top: 20px;
   font-size: 14px;
   color: #bbbbbb;
+}
+
+.month-selector-button {
+  font-size: small;
+  border: 1px solid;
+  margin-top: 8px;
+  padding: 5px 10px;
 }
