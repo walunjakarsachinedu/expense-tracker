@@ -13,7 +13,7 @@ export class HomePageComponent implements OnInit {
   title = 'expense-tracker';
   menuOpen = false;
   expense?: Expense;
-  month: number = (new Date()).getMonth();
+  month: number = (new Date()).getMonth()+1;
   year: number = (new Date()).getFullYear();
   isDataLoading = true;
   monthShortNames = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -64,6 +64,7 @@ export class HomePageComponent implements OnInit {
 
 
   onMonthSelect() {
+    console.log("change event of month selector is fired");
     localStorage.setItem("selectedMonth", this.month.toString());
     localStorage.setItem("selectedYear", this.year.toString());
     this.loadExpense();

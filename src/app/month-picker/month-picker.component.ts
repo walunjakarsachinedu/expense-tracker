@@ -52,7 +52,7 @@ export class MonthPickerComponent implements OnInit, OnDestroy {
       this.currentlySelectedYear = this.model!.selectedMonthYear;
     }
 
-    // this.onChange(this.model!.selectedMonthIndex, this.model!.selectedMonthYear);
+    this.currentlySelectedYear = this.model?.selectedYear.year;
 
     document.addEventListener('click', this.clickOutOfMonthPickerListener);
   }
@@ -96,7 +96,7 @@ export class MonthPickerComponent implements OnInit, OnDestroy {
   }
 
   isSelectedMonth(monthIndex: number) {
-    return this.model!.selectedMonthIndex == monthIndex && this.model!.selectedMonthYear == this.model!.selectedYear.year;
+    return this.model!.selectedMonthIndex == monthIndex && this.currentlySelectedYear == this.model!.selectedYear.year;
   }
 
   onChange(monthIndex: number, year: number) {
@@ -138,6 +138,7 @@ export class MonthPickerComponent implements OnInit, OnDestroy {
     this.currentlySelectedYear = year;
     this.yearChange.emit(year);
     this.model!.updateYearText();
+    this.change.emit({ monthIndex: this.model!.selectedMonthIndex, year: year });
   }
 
   isSelectedYear(year: number) {
